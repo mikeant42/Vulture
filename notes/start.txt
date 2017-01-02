@@ -1,0 +1,18 @@
+Idea for a game.
+
+You open the game and come to a gui
+
+        Username : ______
+        Password : ______
+        Join/Create World : ______
+        Difficulty : __
+
+The game will generate a world based on those parameters. Each world is unique. If you join a world already created,
+it will put you into that world with the other players, where they will see you, and vice versa. As the difficulty goes
+up, PVP may be possible.
+
+Each world will individually create unique quests, creatures, locations, races, etc. Completing quests of varying
+difficulty allows one to level up.
+
+This combo allows for an infinite of possibilities. For example, a "popular" world with a high difficulty might be one
+that all of the high-level players go to in order to fight each other.
