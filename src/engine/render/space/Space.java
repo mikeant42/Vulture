@@ -1,4 +1,4 @@
-package engine.render.sprite;
+package engine.render.space;
 
 import engine.base.CoreEngine;
 import engine.base.Node;
@@ -6,6 +6,7 @@ import engine.input.KeyboardHandler;
 import engine.input.MouseHandler;
 import engine.math.Matrix4f;
 import engine.math.Vector2f;
+import engine.render.DisplayManager;
 import engine.render.Quad;
 import engine.render.RawShader;
 import engine.render.texture.Texture;
@@ -17,29 +18,24 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 /**
- * Created by anarchist on 8/28/16.
+ * Created by anarchist on 1/3/17.
  */
-public class Sprite extends Node {
+public class Space extends Node {
 
     private Quad quad;
     private RawShader shader;
-    private Texture texture;
 
-    private SpriteAnimator spriteAnimator;
-
-    public Sprite(Texture texture) {
-        this(texture, new RawShader("main.vert", "main.frag"));
+    public Space() {
+        this(new RawShader("default.vert", "star/stars.frag"));
     }
 
-    public Sprite(Texture texture, RawShader shader) {
+    public Space(RawShader shader) {
         super();
 
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
         quad = CoreEngine.getLoader().loadToVAO(positions, 2);
         this.shader = shader;
 
-        this.texture = texture;
-        spriteAnimator = new SpriteAnimator(texture);
     }
 
 
@@ -53,16 +49,11 @@ public class Sprite extends Node {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-        texture.bind(GL13.GL_TEXTURE0);
+        //texture.bind(GL13.GL_TEXTURE0);
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
-
-        //
-        shader.setUniform("numberOfRows", texture.getNumberOfRows());
-        shader.setUniform("offset", spriteAnimator.getCurrentFrame());
-        shader.setUniform("offset2", spriteAnimator.getNextFrame());
-        shader.setUniform("blend", spriteAnimator.getBlendFactor());
+        shader.setUniform("time", (float) DisplayManager.getFrameTimeSeconds());
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
@@ -74,11 +65,4 @@ public class Sprite extends Node {
         shader.stop();
     }
 
-    @Override
-    public void input() {
-        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
-            spriteAnimator.calcAnimation();
-
-        }
-    }
 }

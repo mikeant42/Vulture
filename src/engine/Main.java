@@ -5,6 +5,7 @@ import engine.base.Player;
 import engine.math.Vector2f;
 import engine.render.DisplayManager;
 import engine.render.RawShader;
+import engine.render.space.Space;
 import engine.render.sprite.Sprite;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
@@ -38,6 +39,12 @@ public class Main {
             treeSprite.getTransform().setPosition(new Vector2f(MathUtil.randomNextFloat(-2.0f, 2.0f), MathUtil.randomNextFloat(-2.0f, 2.0f)));
             CoreEngine.addEntity(treeSprite);
         }
+
+
+        Space thing = new Space();
+        //thing.getTransform().setScale(0.2f);
+        thing.getTransform().setPosition(new Vector2f(0,0));
+        CoreEngine.addEntity(thing);
 
 
         //sprite.addChild(charSprite);
