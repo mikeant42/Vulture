@@ -20,29 +20,14 @@ public class Main {
 
         CoreEngine.init();
 
-        Texture terrainTex = Texture.loadTexture("grass03.png");
-        Sprite terrainSprite = new Sprite(terrainTex, new RawShader("terrain/terrain.vert", "terrain/terrain.frag"));
-        terrainSprite.getTransform().setPosition(new Vector2f(0.0f, 0.0f));
-        terrainSprite.getTransform().setScale(150f);
-        CoreEngine.addEntity(terrainSprite);
-
         Texture spriteTex = Texture.loadTexture("blackmage_m.png");
         spriteTex.setNumberOfRows(4);
         Player player = new Player(spriteTex);
         player.getTransform().setScale(0.08f);
 
-        Texture treeTex = Texture.loadTexture("baum.png");
-
-        for (int i = 0; i < 15; i++) {
-            Sprite treeSprite = new Sprite(treeTex);
-            treeSprite.getTransform().setScale(0.2f);
-            treeSprite.getTransform().setPosition(new Vector2f(MathUtil.randomNextFloat(-2.0f, 2.0f), MathUtil.randomNextFloat(-2.0f, 2.0f)));
-            CoreEngine.addEntity(treeSprite);
-        }
-
 
         Space thing = new Space();
-        //thing.getTransform().setScale(0.2f);
+        thing.getTransform().setScale(5f);
         thing.getTransform().setPosition(new Vector2f(0,0));
         CoreEngine.addEntity(thing);
 

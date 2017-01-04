@@ -36,6 +36,7 @@ public class DisplayManager {
     private static GLFWScrollCallback scrollCallback;
     private static GLFWCursorPosCallback cursorCallback;
 
+
     public static void createDisplay(String txt) {
         title = txt;
 
@@ -82,7 +83,13 @@ public class DisplayManager {
         lastFrameTime = currentTimeMillis();
 
         GL.createCapabilities();
+
     }
+
+    public static double getTime() {
+        return GLFW.glfwGetTime();
+    }
+
 
     public static boolean getShouldWindowClose() {
         return (GLFW.glfwWindowShouldClose(window));
@@ -91,9 +98,10 @@ public class DisplayManager {
     public static void loop() {
         inputGraphicsUpdate();
 
-        double currentTimeFrame = currentTimeMillis();
-        delta = (currentTimeFrame - lastFrameTime) / 1000f;
+        double currentTimeFrame = GLFW.glfwGetTime();
+        delta = (currentTimeFrame - lastFrameTime);
         lastFrameTime = currentTimeFrame;
+
 
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GL11.glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
@@ -125,8 +133,8 @@ public class DisplayManager {
         return ASPECT_RATIO;
     }
 
-    public static double currentTimeMillis() {
-        return GLFW.glfwGetTime() * 1000;
+    private static double currentTimeMillis() {
+        return GLFW.glfwGetTime();
     }
 
 }
