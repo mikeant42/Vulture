@@ -3,6 +3,7 @@ package engine.render.texture;
 import engine.util.ResourceManager;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
+import org.lwjgl.system.CallbackI;
 
 import java.awt.image.*;
 import java.nio.ByteBuffer;
@@ -32,6 +33,10 @@ public class Texture {
         this.imageBuffer = data;
     }
 
+    public Texture(int width, int height, BufferedImage image) {
+        this(image.getWidth(), image.getHeight(), convert(image));
+    }
+
     private Texture(int width, int height, ByteBuffer data, int target, int filter, boolean mipMap, int internalFormat, int format, boolean clamp) {
         id = GL11.glGenTextures();
         this.width = width;
@@ -58,6 +63,26 @@ public class Texture {
                 GL11.glTexParameterf(target,  EXTTextureFilterAnisotropic.GL_TEXTURE_MAX_ANISOTROPY_EXT, amount);
             }
         }
+    }
+
+    private static ByteBuffer convert(BufferedImage image) {
+        int[] pixels = new int[image.getWidth() * image.getHeight()];
+        image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
+
+        ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4); //4 for RGBA, 3 for RGB
+
+        for(int y = 0; y < image.getHeight(); y++){
+            for(int x = 0; x < image.getWidth(); x++){
+                int pixel = pixels[y * image.getWidth() + x];
+                buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
+                buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
+                buffer.put((byte) (pixel & 0xFF));               // Blue component
+                buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
+            }
+        }
+
+        buffer.flip(); //FOR THE LOVE OF GOD DO NOT FORGET THIS
+        return buffer;
     }
 
 
@@ -134,31 +159,31 @@ public class Texture {
     * Converts BufferedImage to ByteBuffer
     * Method from: http://stackoverflow.com/questions/29301838/converting-bufferedimage-to-bytebuffer
      */
-    public static ByteBuffer toByteBuffer(BufferedImage bi) {
-        ByteBuffer byteBuffer;
-        DataBuffer dataBuffer = bi.getRaster().getDataBuffer();
-
-        if (dataBuffer instanceof DataBufferByte) {
-            byte[] pixelData = ((DataBufferByte) dataBuffer).getData();
-            byteBuffer = ByteBuffer.wrap(pixelData);
-        } else if (dataBuffer instanceof DataBufferUShort) {
-            short[] pixelData = ((DataBufferUShort) dataBuffer).getData();
-            byteBuffer = ByteBuffer.allocate(pixelData.length * 2);
-            byteBuffer.asShortBuffer().put(ShortBuffer.wrap(pixelData));
-        } else if (dataBuffer instanceof DataBufferShort) {
-            short[] pixelData = ((DataBufferShort) dataBuffer).getData();
-            byteBuffer = ByteBuffer.allocate(pixelData.length * 2);
-            byteBuffer.asShortBuffer().put(ShortBuffer.wrap(pixelData));
-        } else if (dataBuffer instanceof DataBufferInt) {
-            int[] pixelData = ((DataBufferInt) dataBuffer).getData();
-            byteBuffer = ByteBuffer.allocate(pixelData.length * 4);
-            byteBuffer.asIntBuffer().put(IntBuffer.wrap(pixelData));
-        } else {
-            throw new IllegalArgumentException("Not implemented for data buffer type: " + dataBuffer.getClass());
-        }
-
-        return byteBuffer;
-
-    }
+//    public static ByteBuffer toByteBuffer(BufferedImage bi) {
+//        ByteBuffer byteBuffer;
+//        DataBuffer dataBuffer = bi.getRaster().getDataBuffer();
+//
+//        if (dataBuffer instanceof DataBufferByte) {
+//            byte[] pixelData = ((DataBufferByte) dataBuffer).getData();
+//            byteBuffer = ByteBuffer.wrap(pixelData);
+//        } else if (dataBuffer instanceof DataBufferUShort) {
+//            short[] pixelData = ((DataBufferUShort) dataBuffer).getData();
+//            byteBuffer = ByteBuffer.allocate(pixelData.length * 2);
+//            byteBuffer.asShortBuffer().put(ShortBuffer.wrap(pixelData));
+//        } else if (dataBuffer instanceof DataBufferShort) {
+//            short[] pixelData = ((DataBufferShort) dataBuffer).getData();
+//            byteBuffer = ByteBuffer.allocate(pixelData.length * 2);
+//            byteBuffer.asShortBuffer().put(ShortBuffer.wrap(pixelData));
+//        } else if (dataBuffer instanceof DataBufferInt) {
+//            int[] pixelData = ((DataBufferInt) dataBuffer).getData();
+//            byteBuffer = ByteBuffer.allocate(pixelData.length * 4);
+//            byteBuffer.asIntBuffer().put(IntBuffer.wrap(pixelData));
+//        } else {
+//            throw new IllegalArgumentException("Not implemented for data buffer type: " + dataBuffer.getClass());
+//        }
+//
+//        return byteBuffer;
+//
+//    }
 
 }

@@ -9,6 +9,7 @@ uniform vec3 starColor;
 uniform float starDensity;
 uniform float speed;
 uniform vec2 resolution;
+uniform vec3 spaceColor;
 
 in vec2 pass_texCoords;
 
@@ -27,7 +28,7 @@ void main(void) {
     vec2 position = pass_texCoords.xy * resolution.xy;
     float dtime = time;
 
-    outColor = vec4(0.0, 0.0, 0.0, 1.0);
+    outColor = vec4(spaceColor, 1.0);
 
     for ( int p = 0; p < 20; p++ ) {
         float scale = ( 1.0 / starRadius ) + float( p );

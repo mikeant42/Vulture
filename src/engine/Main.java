@@ -4,11 +4,9 @@ import engine.base.CoreEngine;
 import engine.base.Player;
 import engine.math.Vector2f;
 import engine.render.DisplayManager;
-import engine.render.RawShader;
+import engine.render.space.planet.Planet;
 import engine.render.space.Space;
-import engine.render.sprite.Sprite;
 import engine.render.texture.Texture;
-import engine.util.MathUtil;
 
 /**
  * Created by anarchist on 8/28/16.
@@ -25,11 +23,20 @@ public class Main {
         Player player = new Player(spriteTex);
         player.getTransform().setScale(0.08f);
 
+        Planet planet = new Planet();
+        planet.buildTex();
+
+        planet.getTransform().setPosition(new Vector2f(0,0));
+        planet.getTransform().setScale(0.5f);
+
 
         Space thing = new Space();
         thing.getTransform().setScale(5f);
         thing.getTransform().setPosition(new Vector2f(0,0));
         CoreEngine.addEntity(thing);
+
+        CoreEngine.addEntity(planet);
+
 
 
         //sprite.addChild(charSprite);
