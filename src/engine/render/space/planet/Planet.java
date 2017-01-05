@@ -116,13 +116,13 @@ public class Planet extends Node {
         this.seed = seed;
     }
 
-    public Texture getPermTex() {
-//        File outputfile = new File("imagge.jpg");
-//        try {
-//            ImageIO.write(img, "jpg", outputfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    private Texture getPermTex() {
+        File outputfile = new File("imagge.jpg");
+        try {
+            ImageIO.write(img, "jpg", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new Texture(size, size, img);
     }
 
