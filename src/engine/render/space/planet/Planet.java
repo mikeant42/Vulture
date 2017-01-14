@@ -117,9 +117,9 @@ public class Planet extends Node {
     }
 
     private Texture getPermTex() {
-        File outputfile = new File("imagge.jpg");
+        File outputfile = new File("imagge.png");
         try {
-            ImageIO.write(img, "jpg", outputfile);
+            ImageIO.write(img, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();
         }

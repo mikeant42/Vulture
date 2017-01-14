@@ -9,9 +9,12 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
+import org.lwjgl.system.FunctionProvider;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.IntBuffer;
+
+import static org.lwjgl.opengl.WGLARBCreateContext.nwglCreateContextAttribsARB;
 
 
 /**
@@ -27,8 +30,8 @@ public class DisplayManager {
     private static double lastFrameTime;
     private static double delta;
 
-    private static int WINDOW_WIDTH = 1080;
-    private static int WINDOW_HEIGHT = 720;
+    private static int WINDOW_WIDTH = 1800;
+    private static int WINDOW_HEIGHT = 1600;
     private static float ASPECT_RATIO = WINDOW_WIDTH / WINDOW_HEIGHT;
 
     private static GLFWKeyCallback keyCallback;
@@ -47,11 +50,13 @@ public class DisplayManager {
             throw new IllegalStateException("Unable to initialize GLFW");
 
 
-        GLFW.glfwDefaultWindowHints();
         GLFW.glfwWindowHint(GLFW.GLFW_VISIBLE, GLFW.GLFW_TRUE);
         GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_FALSE);
+        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_CREATION_API, GLFW.GLFW_NATIVE_CONTEXT_API);
+
 
         window = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title, MemoryUtil.NULL, MemoryUtil.NULL);
+
 
         if (window == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create window");
@@ -70,7 +75,7 @@ public class DisplayManager {
         GLFW.glfwMakeContextCurrent(window);
 
         // Enable v-sync
-        GLFW.glfwSwapInterval(1);
+        //GLFW.glfwSwapInterval(1);
 
         // Make the window visible
         GLFW.glfwShowWindow(window);
