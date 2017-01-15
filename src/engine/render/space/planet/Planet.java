@@ -88,6 +88,9 @@ public class Planet extends Node {
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+        shader.setUniform("radius", 0.5f);
+        shader.setUniform("center", new Vector2f(0.5f, 0.5f));
+        shader.setUniform("border", 0.05f);
 
 //        shader.setUniform("time", (float) DisplayManager.getTime());
 //        shader.setUniform("resolution", new Vector2f(100, 100));

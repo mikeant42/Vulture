@@ -30,8 +30,8 @@ public class DisplayManager {
     private static double lastFrameTime;
     private static double delta;
 
-    private static int WINDOW_WIDTH = 1800;
-    private static int WINDOW_HEIGHT = 1600;
+    private static int WINDOW_WIDTH = 1400;
+    private static int WINDOW_HEIGHT = 1400;
     private static float ASPECT_RATIO = WINDOW_WIDTH / WINDOW_HEIGHT;
 
     private static GLFWKeyCallback keyCallback;
@@ -39,6 +39,8 @@ public class DisplayManager {
     private static GLFWScrollCallback scrollCallback;
     private static GLFWCursorPosCallback cursorCallback;
 
+    private static int[] glw;
+    private static int[] glh;
 
     public static void createDisplay(String txt) {
         title = txt;
@@ -58,6 +60,11 @@ public class DisplayManager {
         window = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title, MemoryUtil.NULL, MemoryUtil.NULL);
 
 
+        glw = new int[5];
+        glh = new int[5];
+        GLFW.glfwGetFramebufferSize(window, glw, glh);
+
+
         if (window == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create window");
         }
@@ -71,11 +78,19 @@ public class DisplayManager {
                 (vidmode.height() - WINDOW_HEIGHT) / 2
         );
 
+//        int[] widthMM = new int[5];
+//        int[] heightMM = new int[5];
+//        GLFW.glfwGetMonitorPhysicalSize(GLFW.glfwGetPrimaryMonitor(), widthMM, heightMM);
+//
+//        double dpi = vidmode.width() / (widthMM[0] / 25.4);
+//        System.out.println(widthMM[0]);
+
         // Make the OpenGL context current
         GLFW.glfwMakeContextCurrent(window);
 
+
         // Enable v-sync
-        //GLFW.glfwSwapInterval(1);
+        GLFW.glfwSwapInterval(1);
 
         // Make the window visible
         GLFW.glfwShowWindow(window);
@@ -88,6 +103,9 @@ public class DisplayManager {
         lastFrameTime = currentTimeMillis();
 
         GL.createCapabilities();
+
+
+        GL11.glViewport(0, 0, glw[0], glh[0]);
 
     }
 
