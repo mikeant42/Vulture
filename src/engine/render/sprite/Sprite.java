@@ -53,7 +53,8 @@ public class Sprite extends Node {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-        texture.bind(GL13.GL_TEXTURE0);
+        GL13.glActiveTexture(GL13.GL_TEXTURE0);
+        texture.bind();
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));

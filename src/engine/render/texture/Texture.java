@@ -94,8 +94,7 @@ public class Texture {
         this.numberOfRows = numberOfRows;
     }
 
-    public void bind(int num) {
-        GL13.glActiveTexture(num);
+    public void bind() {
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, id);
     }
 

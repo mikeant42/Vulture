@@ -35,6 +35,7 @@ public class Planet extends Node {
     private int seed;
     private BufferedImage img;
     private Texture texture;
+    private Texture colorTex;
 
     private int size;
     private float radius;
@@ -55,6 +56,27 @@ public class Planet extends Node {
 
         buildTex();
         this.texture = getPermTex();
+        this.colorTex = Texture.loadTexture("earth_like.png");
+    }
+
+    private Vector2f distort(float x, float y) {
+        float z;
+        float tmp, rx, ry;
+        float ri = 0.6f; // refraction index
+
+        Vector2f dest = new Vector2f();
+
+        z = (float)Math.sqrt(1 - x * x  - y * y);
+
+        rx = ri * x;
+        tmp = (float)Math.sqrt(1 - rx * rx - y * y);
+        dest.x = rx * (1 - y * y) / (z * tmp + rx * x);
+
+        ry = ri * y;
+        tmp = (float)Math.sqrt(1 - x * x - ry * ry);
+        dest.y = ry * (1 - x * x) / (z * tmp + ry * y);
+
+        return dest;
     }
 
     public void buildTex() {
@@ -65,7 +87,8 @@ public class Planet extends Node {
                 float dx = (x - radius)/(float)radius;  // normalized coordinates -1 -> 1 from left to right
                 float dy = (y - radius)/(float)radius;  // normalized coordinates -1 -> 1 from top to bottom
 // Set every pixel in the image to random value.
-                float val = function.eval(dx,dy);
+                Vector2f coords = distort(dx, dy);
+                float val = function.eval(coords.x, coords.y);
                 int rgb = Color.HSBtoRGB(0.0f,0.0f,val);
                 img.setRGB(x, y, rgb);
             }
@@ -84,13 +107,21 @@ public class Planet extends Node {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-        texture.bind(GL13.GL_TEXTURE0);
+        GL13.glActiveTexture(GL13.GL_TEXTURE0);
+        texture.bind();
+
+        GL13.glActiveTexture(GL13.GL_TEXTURE1);
+        colorTex.bind();
+
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
         shader.setUniform("radius", 0.5f);
         shader.setUniform("center", new Vector2f(0.5f, 0.5f));
         shader.setUniform("border", 0.05f);
+
+        shader.setTextureSlot("noise", 0);
+        shader.setTextureSlot("colorSample", 1);
 
 //        shader.setUniform("time", (float) DisplayManager.getTime());
 //        shader.setUniform("resolution", new Vector2f(100, 100));
