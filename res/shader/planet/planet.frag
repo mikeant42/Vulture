@@ -19,17 +19,25 @@ vec2 lightPos = vec2(0.2, 0.2);
 vec3 DIFFUSE_LIGHT = vec3(1,1,1);
 vec3 AMBIENT_LIGHT = vec3(0.5,0.5,0.5);
 
+#include <colormap/MATLAB_winter.glsl>
+
 
 vec4 toGrayscale(vec4 color) {
   float average = (color.r + color.g + color.b) / 3.0;
   return vec4(average, average, average, 1.0);
 }
 
+vec4 mixman(float x, float y, vec4 a) {
+    return x * (1 - a) + y * a; // literally same thing as mix()
+}
+
 void main() {
 	vec4 color1 = texture(noiseSample, (pass_texCoords * vec2(1.0, -1.0)));
 	//vec4 grayScale = toGrayscale(color1); // make sure we get the grayscale image
-	vec4 grayScale = color1;
-	vec4 colorTex = texture(colorSample, grayScale.zw * vec2(1.0, -1.0));
+	vec4 grayScale = toGrayscale(color1);
+	//vec4 colorTex = texture(colorSample, grayScale.zw * vec2(1.0, -1.0));
+
+	vec4 colorTex = colormap(grayScale.x) * grayScale; //vec4(0.9, 0.2, 0.2, 1);
 
     // Add the atmo color onto the planet
 	colorTex += atmosphereColor;

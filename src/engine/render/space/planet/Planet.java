@@ -4,10 +4,12 @@ import engine.base.CoreEngine;
 import engine.base.Node;
 import engine.math.Matrix4f;
 import engine.math.Vector2f;
-import engine.math.Vector3f;
 import engine.math.Vector4f;
 import engine.render.Quad;
 import engine.render.RawShader;
+import engine.render.noise.Fractal2D;
+import engine.render.noise.Function2D;
+import engine.render.noise.Simplex2D;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;
@@ -15,11 +17,8 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by anarchist on 1/4/17.
@@ -130,7 +129,7 @@ public class Planet extends Node {
         shader.setUniform("radius", 0.5f);
         shader.setUniform("center", new Vector2f(0.5f, 0.5f));
         shader.setUniform("atmosphereBorder", 0.05f);
-        shader.setUniform("atmosphereColor", new Vector4f(0.1f, 0.5f, 0.5f, 1));
+        shader.setUniform("atmosphereColor", new Vector4f(0.2f, 0.6f, 0.5f, 1));
 
         shader.setTextureSlot("noiseSample", 0);
         shader.setTextureSlot("colorSample", 1);

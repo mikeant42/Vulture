@@ -1,4 +1,4 @@
-package engine.render.space.planet;
+package engine.render.noise;
 
 /**
  * Created by anarchist on 1/4/17.
