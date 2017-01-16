@@ -2,17 +2,13 @@ package engine.render.space;
 
 import engine.base.CoreEngine;
 import engine.base.Node;
-import engine.input.KeyboardHandler;
-import engine.input.MouseHandler;
 import engine.math.Matrix4f;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
-import engine.render.DisplayManager;
 import engine.render.Quad;
 import engine.render.RawShader;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
@@ -59,13 +55,14 @@ public class Space extends Node {
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
-        shader.setUniform("time", (float) DisplayManager.getTime());
+        shader.loadDefaults();
+
         shader.setUniform("resolution", new Vector2f(100, 100));
 
         shader.setUniform("starDensity", 3.5f);
         shader.setUniform("starRadius", 0.5f);
         shader.setUniform("starColor", new Vector3f(0.796078431372549f, 0.9254901960784314f, 0.9254901960784314f));
-        shader.setUniform("spaceColor", new Vector3f(0, 0, 0));
+        shader.setUniform("spaceColor", new Vector3f(0.35f, 0.3f, 0.3f));
         shader.setUniform("speed", 0.2f);
 
 

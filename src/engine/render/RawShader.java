@@ -199,6 +199,12 @@ public class RawShader {
         loadInt(loc, val);
     }
 
+    public void loadDefaults() {
+        this.setUniform("resolution", new Vector2f(DisplayManager.getWindowWidth(), DisplayManager.getWindowHeight()));
+        this.setUniform("time", (float) DisplayManager.getTime());
+        this.setUniform("dtime", (float) DisplayManager.getFrameTimeSeconds());
+    }
+
     private boolean inMap(String str) {
         return uniformMap.containsKey(str);
     }

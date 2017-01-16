@@ -27,7 +27,7 @@ public class Main {
         planet.buildTex();
 
         planet.getTransform().setPosition(new Vector2f(0,0));
-        planet.getTransform().setScale(0.5f);
+        //planet.getTransform().setScale(1.5f);
 
 
         Space thing = new Space();

@@ -4,6 +4,7 @@ import engine.input.CursorHandler;
 import engine.input.KeyboardHandler;
 import engine.input.MouseHandler;
 import engine.input.ScrollHandler;
+import engine.math.Vector2f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;

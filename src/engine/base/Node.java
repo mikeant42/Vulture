@@ -82,5 +82,5 @@ public class Node {
 
     public void render() {}
     public void input() {}
-    public void update() {};
+    public void update() {}
 }

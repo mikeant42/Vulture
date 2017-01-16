@@ -6,7 +6,6 @@ import engine.math.Matrix4f;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.math.Vector4f;
-import engine.render.DisplayManager;
 import engine.render.Quad;
 import engine.render.RawShader;
 import engine.render.texture.Texture;
@@ -19,10 +18,8 @@ import org.lwjgl.opengl.GL30;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * Created by anarchist on 1/4/17.
@@ -41,18 +38,21 @@ public class Planet extends Node {
     private float radius;
     private Function2D function;
 
+    private float rotationSpeed = 0.02f;
+
     public Planet() {
 
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
         quad = CoreEngine.getLoader().loadToVAO(positions, 2);
 
         this.shader = new RawShader("default.vert", "planet/planet.frag");
+
         this.seed = 10;
 
         this.size = 256;
         this.radius = size/2;
 
-        this.function = new Fractal2D(new Simplex2D(), 6, 0.5f);
+        this.function = new Fractal2D(new Simplex2D(), 6, 0.7f);
 
         buildTex();
         this.texture = getPermTex();
@@ -97,6 +97,14 @@ public class Planet extends Node {
 
     }
 
+    public float getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public void setRotationSpeed(float rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
+    }
+
     @Override
     public void render() {
         shader.start();
@@ -116,21 +124,16 @@ public class Planet extends Node {
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+
+        this.shader.loadDefaults();
+
         shader.setUniform("radius", 0.5f);
         shader.setUniform("center", new Vector2f(0.5f, 0.5f));
-        shader.setUniform("border", 0.05f);
+        shader.setUniform("atmosphereBorder", 0.05f);
+        shader.setUniform("atmosphereColor", new Vector4f(0.1f, 0.5f, 0.5f, 1));
 
-        shader.setTextureSlot("noise", 0);
+        shader.setTextureSlot("noiseSample", 0);
         shader.setTextureSlot("colorSample", 1);
-
-//        shader.setUniform("time", (float) DisplayManager.getTime());
-//        shader.setUniform("resolution", new Vector2f(100, 100));
-//
-//        shader.setUniform("starDensity", 3.5f);
-//        shader.setUniform("starRadius", 0.5f);
-//        shader.setUniform("starColor", new Vector3f(0.796078431372549f, 0.9254901960784314f, 0.9254901960784314f));
-//        shader.setUniform("spaceColor", new Vector3f(0, 0, 0));
-//        shader.setUniform("speed", 0.2f);
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
@@ -151,13 +154,18 @@ public class Planet extends Node {
     }
 
     private Texture getPermTex() {
-        File outputfile = new File("imagge.png");
-        try {
-            ImageIO.write(img, "png", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        File outputfile = new File("imagge.png");
+//        try {
+//            ImageIO.write(img, "png", outputfile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return new Texture(size, size, img);
+    }
+
+    @Override
+    public void update() {
+        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.02f, this.getTransform().getRotation().y));
     }
 
 }
