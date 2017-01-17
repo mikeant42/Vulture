@@ -6,7 +6,6 @@ in vec2 pass_texCoords;
 out vec4 outColor;
 
 uniform sampler2D noiseSample;
-uniform sampler2D colorSample;
 
 uniform float radius;
 uniform vec2 center;
@@ -19,7 +18,7 @@ vec2 lightPos = vec2(0.2, 0.2);
 vec3 DIFFUSE_LIGHT = vec3(1,1,1);
 vec3 AMBIENT_LIGHT = vec3(0.5,0.5,0.5);
 
-#include <colormap/MATLAB_winter.glsl>
+#include <colormap/IDL_CB-BuGn.frag>
 
 
 vec4 toGrayscale(vec4 color) {

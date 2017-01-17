@@ -7,9 +7,7 @@ import engine.math.Vector2f;
 import engine.math.Vector4f;
 import engine.render.Quad;
 import engine.render.RawShader;
-import engine.render.noise.Fractal2D;
-import engine.render.noise.Function2D;
-import engine.render.noise.Simplex2D;
+import engine.render.noise.*;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;
@@ -31,7 +29,6 @@ public class Planet extends Node {
     private int seed;
     private BufferedImage img;
     private Texture texture;
-    private Texture colorTex;
 
     private int size;
     private float radius;
@@ -46,16 +43,16 @@ public class Planet extends Node {
 
         this.shader = new RawShader("default.vert", "planet/planet.frag");
 
-        this.seed = 10;
+        this.seed = 53;
 
         this.size = 256;
         this.radius = size/2;
 
-        this.function = new Fractal2D(new Simplex2D(), 6, 0.7f);
+        //this.function = new Fractal2D(new VoronoiNoise(this.seed, (short)1), 6, 0.9f);
+        this.function = new Fractal2D(new SimplexNoise(this.seed), 6, 0.8f);
 
         buildTex();
         this.texture = getPermTex();
-        this.colorTex = Texture.loadTexture("earth_like.png");
     }
 
     private Vector2f distort(float x, float y) {
@@ -117,9 +114,6 @@ public class Planet extends Node {
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         texture.bind();
 
-        GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        colorTex.bind();
-
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
@@ -129,10 +123,9 @@ public class Planet extends Node {
         shader.setUniform("radius", 0.5f);
         shader.setUniform("center", new Vector2f(0.5f, 0.5f));
         shader.setUniform("atmosphereBorder", 0.05f);
-        shader.setUniform("atmosphereColor", new Vector4f(0.2f, 0.6f, 0.5f, 1));
+        shader.setUniform("atmosphereColor", new Vector4f(0.2f, 0.4f, 0.5f, 1));
 
         shader.setTextureSlot("noiseSample", 0);
-        shader.setTextureSlot("colorSample", 1);
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());

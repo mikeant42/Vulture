@@ -76,7 +76,7 @@ public class VoronoiNoise implements Function2D {
     private long seed;
     private short distanceMethod;
 
-    private double frequency = 0.2;
+    private double frequency = 1;
 
 
     public VoronoiNoise(long seed, short distanceMethod) {
