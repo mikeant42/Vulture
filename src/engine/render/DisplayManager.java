@@ -31,8 +31,9 @@ public class DisplayManager {
     private static double lastFrameTime;
     private static double delta;
 
-    private static int WINDOW_WIDTH = 1400;
-    private static int WINDOW_HEIGHT = 1400;
+    // Note that these have to continue to change until 4k moniters scale correctly.
+    private static int WINDOW_WIDTH = 1800;
+    private static int WINDOW_HEIGHT = 1600;
     private static float ASPECT_RATIO = WINDOW_WIDTH / WINDOW_HEIGHT;
 
     private static GLFWKeyCallback keyCallback;

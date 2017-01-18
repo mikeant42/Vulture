@@ -44,9 +44,9 @@ public class Main {
 
         CoreEngine.addEntity(planet);
 
-        FontType font = new FontType(Texture.loadTexture("font/roboto-thin.png").getTextureID(), new File("res/tex/font/roboto-thin.fnt"));
+        FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
-        GUIText text = new GUIText("Vulture Graphics", 1.5f, font, new Vector2f(0,0), 1f, true);
+        GUIText text = new GUIText("Planet: ", 2f, font, new Vector2f(0.03f,0.92f), 1f, false);
 
         TextManager.loadText(text);
 
@@ -60,6 +60,7 @@ public class Main {
 
             CoreEngine.update();
             TextManager.render();
+
 
 
             DisplayManager.loop();
