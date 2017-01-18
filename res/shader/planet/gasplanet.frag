@@ -11,6 +11,8 @@ uniform float radius;
 uniform vec2 center;
 uniform float atmosphereBorder;
 
+uniform float time;
+
 
 uniform vec4 atmosphereColor;
 
@@ -19,7 +21,6 @@ vec3 DIFFUSE_LIGHT = vec3(1,1,1);
 vec3 AMBIENT_LIGHT = vec3(0.5,0.5,0.5);
 
 #uniforminclude
-
 
 vec4 toGrayscale(vec4 color) {
   float average = (color.r + color.g + color.b) / 3.0;
@@ -37,7 +38,13 @@ void main() {
 	//vec4 colorTex = texture(colorSample, grayScale.zw * vec2(1.0, -1.0));
 
     // The function colormap(float) will always come from #uniforminclude
-	vec4 colorTex = colormap(grayScale.x) * grayScale;
+	//vec4 colorTex = colormap(grayScale.x) * grayScale;
+
+	vec2 p = -1.0 + 2.0 * pass_texCoords;
+    float len = length(p);
+    vec2 uvv = pass_texCoords + (p/len)*cos(len*12.0-time*4.0)*0.0008;
+
+	vec4 colorTex = colormap(uvv.x);
 
     // Add the atmo color onto the planet
 	colorTex += atmosphereColor;

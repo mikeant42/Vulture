@@ -29,13 +29,14 @@ public class RawShader {
 
     private Map<String, Integer> uniformMap = new HashMap<>();
 
-    public RawShader(String vertFile, String fragFile) {
-        vertexShaderID = loadShader(vertFile, GL20.GL_VERTEX_SHADER);
-        fragmentShaderID = loadShader(fragFile, GL20.GL_FRAGMENT_SHADER);
+    public RawShader(String vertFile, String fragFile, String uniformInclude) {
+        vertexShaderID = loadShader(vertFile, GL20.GL_VERTEX_SHADER, uniformInclude);
+        fragmentShaderID = loadShader(fragFile, GL20.GL_FRAGMENT_SHADER, uniformInclude);
 
         programID = GL20.glCreateProgram();
         GL20.glAttachShader(programID, vertexShaderID);
         GL20.glAttachShader(programID, fragmentShaderID);
+
 
         //bindAttributes();
 
@@ -47,6 +48,10 @@ public class RawShader {
         verify();
 
         //getAllUniformLocations();
+    }
+
+    public RawShader(String vertFile, String fragFile) {
+        this(vertFile, fragFile, "");
     }
 
     //protected abstract void bindAttributes();
@@ -209,9 +214,9 @@ public class RawShader {
         return uniformMap.containsKey(str);
     }
 
-    private static int loadShader(String file, int type) {
+    private static int loadShader(String file, int type, String uniformFile) {
         int shaderID = GL20.glCreateShader(type);
-        GL20.glShaderSource(shaderID, processShader(file));
+        GL20.glShaderSource(shaderID, processShader(file, uniformFile));
         GL20.glCompileShader(shaderID);
 
         if (GL20.glGetShaderi(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
@@ -224,7 +229,7 @@ public class RawShader {
 
     }
 
-    private static String processShader(String fileName) {
+    private static String processShader(String fileName, String uniformFile) {
         StringBuilder shaderSource = new StringBuilder();
         BufferedReader bf = null;
 
@@ -234,6 +239,8 @@ public class RawShader {
             while ((line = bf.readLine()) != null) {
                 if (line.startsWith(ResourceManager.SHADER_INCLUDE_DIRECTIVE)) {
                     shaderSource.append(processShader(line.substring(ResourceManager.SHADER_INCLUDE_DIRECTIVE.length() + 2, line.length() - 1)));
+                } else if (line.startsWith(ResourceManager.SHADER_UNIFORM_INCLUDE)) {
+                    shaderSource.append(processShader(uniformFile));
                 } else {
                     shaderSource.append(line).append("\n");
                 }
@@ -245,6 +252,10 @@ public class RawShader {
         }
 
         return shaderSource.toString();
+    }
+
+    private static String processShader(String fileName) {
+        return processShader(fileName, "");
     }
 
 

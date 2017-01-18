@@ -5,6 +5,7 @@ package engine.util;
  */
 public class ResourceManager {
     public static final String SHADER_INCLUDE_DIRECTIVE = "#include";
+    public static final String SHADER_UNIFORM_INCLUDE = "#uniforminclude";
 
     private static final String SHADER_INCLUDE_PATH = "res/shader/";
     private static final String MODEL_INCLUDE_PATH = "res/models/";

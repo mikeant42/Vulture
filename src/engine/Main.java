@@ -3,12 +3,13 @@ package engine;
 import engine.base.CoreEngine;
 import engine.base.Player;
 import engine.math.Vector2f;
+import engine.math.Vector3f;
 import engine.render.DisplayManager;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
 import engine.render.gui.font.TextManager;
-import engine.render.space.planet.Planet;
 import engine.render.space.Space;
+import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 
 import java.io.File;
@@ -30,11 +31,7 @@ public class Main {
         Player player = new Player(spriteTex);
         player.getTransform().setScale(0.08f);
 
-        Planet planet = new Planet();
-        planet.buildTex();
-
-        planet.getTransform().setPosition(new Vector2f(0,0));
-        //planet.getTransform().setScale(1.5f);
+        PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_GAS);
 
 
         Space thing = new Space();
@@ -42,11 +39,12 @@ public class Main {
         thing.getTransform().setPosition(new Vector2f(0,0));
         CoreEngine.addEntity(thing);
 
-        CoreEngine.addEntity(planet);
+        CoreEngine.addEntity(planetGen.getPlanet());
 
         FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
-        GUIText text = new GUIText("Planet: ", 2f, font, new Vector2f(0.03f,0.92f), 1f, false);
+        GUIText text = new GUIText("Planet: ", 1.5f, font, new Vector2f(0.03f,0.92f), 1f, false);
+        text.setColor(new Vector3f(1,1,1));
 
         TextManager.loadText(text);
 

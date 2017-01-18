@@ -1,60 +1,44 @@
 package engine.render.space.planet;
 
-import engine.base.CoreEngine;
 import engine.base.Node;
-import engine.math.Matrix4f;
 import engine.math.Vector2f;
-import engine.math.Vector4f;
-import engine.render.Quad;
-import engine.render.RawShader;
-import engine.render.noise.*;
-import engine.render.texture.Texture;
-import engine.util.MathUtil;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import engine.math.Vector3f;
+import engine.render.noise.Function2D;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Created by anarchist on 1/4/17.
+ * Created by anarchist on 1/18/17.
  */
-public class Planet extends Node {
-
-    private Quad quad;
-    private RawShader shader;
-
-    private int seed;
-    private BufferedImage img;
-    private Texture texture;
-
-    private int size;
-    private float radius;
-    private Function2D function;
-
-    private float rotationSpeed = 0.02f;
+public abstract class Planet extends Node {
 
     public Planet() {
 
-        float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
-        quad = CoreEngine.getLoader().loadToVAO(positions, 2);
-
-        this.shader = new RawShader("default.vert", "planet/planet.frag");
-
-        this.seed = 53;
-
-        this.size = 256;
-        this.radius = size/2;
-
-        //this.function = new Fractal2D(new VoronoiNoise(this.seed, (short)1), 6, 0.9f);
-        this.function = new Fractal2D(new SimplexNoise(this.seed), 6, 0.8f);
-
-        buildTex();
-        this.texture = getPermTex();
     }
 
+    public abstract void generate(String colorMap, Function2D function);
+
+    public abstract float getRotationSpeed();
+    public abstract void setRotationSpeed(float speed);
+
+    public abstract float getPlanetRadius();
+    public abstract void setPlanetRadius(float speed);
+
+    public abstract float getAtmosphereBorder();
+    public abstract void setAtmosphereBorder(float speed);
+
+    public abstract Vector2f getCenter();
+    public abstract void setCenter(Vector2f center);
+
+    public abstract int getTextureSize();
+    public abstract void setTextureSize(int size);
+
+    public abstract Vector3f getAtmosphereColor();
+    public abstract void setAtmosphereColor(Vector3f color);
+
+
+    // Distorts the texture at the poles to give the impression of being spherical
     private Vector2f distort(float x, float y) {
         float z;
         float tmp, rx, ry;
@@ -75,8 +59,10 @@ public class Planet extends Node {
         return dest;
     }
 
-    public void buildTex() {
-        this.img = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+    // Actually builds the texture. Might want to relocate to Fractal2D class, but also important to
+    // separate.
+    protected BufferedImage buildTexture(float radius, int size, Function2D function) {
+        BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
 
         for(int x = 0; x < img.getWidth(); x++){
             for(int y = 0; y < img.getHeight(); y++){
@@ -90,74 +76,10 @@ public class Planet extends Node {
             }
         }
 
+        return img;
 
     }
 
-    public float getRotationSpeed() {
-        return rotationSpeed;
-    }
 
-    public void setRotationSpeed(float rotationSpeed) {
-        this.rotationSpeed = rotationSpeed;
-    }
-
-    @Override
-    public void render() {
-        shader.start();
-        GL30.glBindVertexArray(quad.getVaoID());
-        GL20.glEnableVertexAttribArray(0);
-
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        texture.bind();
-
-        Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
-        shader.setUniform("transformationMatrix", trans);
-        shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
-
-        this.shader.loadDefaults();
-
-        shader.setUniform("radius", 0.5f);
-        shader.setUniform("center", new Vector2f(0.5f, 0.5f));
-        shader.setUniform("atmosphereBorder", 0.05f);
-        shader.setUniform("atmosphereColor", new Vector4f(0.2f, 0.4f, 0.5f, 1));
-
-        shader.setTextureSlot("noiseSample", 0);
-
-
-        GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
-
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL20.glDisableVertexAttribArray(0);
-        GL30.glBindVertexArray(0);
-        shader.stop();
-    }
-
-    public int getSeed() {
-        return seed;
-    }
-
-    public void setSeed(int seed) {
-        this.seed = seed;
-    }
-
-    private Texture getPermTex() {
-//        File outputfile = new File("imagge.png");
-//        try {
-//            ImageIO.write(img, "png", outputfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        return new Texture(size, size, img);
-    }
-
-    @Override
-    public void update() {
-        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.02f, this.getTransform().getRotation().y));
-    }
 
 }
