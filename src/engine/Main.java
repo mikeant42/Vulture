@@ -31,7 +31,7 @@ public class Main {
         Player player = new Player(spriteTex);
         player.getTransform().setScale(0.08f);
 
-        PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_GAS);
+        PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT);
 
 
         Space thing = new Space();

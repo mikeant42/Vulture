@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2c1e0d4-688b-4a44-b874-e682998bcd29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shader/planet/gasplanet.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/PlanetGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/render/RawShader.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/render/RawShader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/render/space/planet/Planet.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/render/space/planet/Planet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/util/ResourceManager.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/util/ResourceManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shader/planet/planet.frag" afterPath="$PROJECT_DIR$/res/shader/planet/planet.frag" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/Main.java" afterPath="$PROJECT_DIR$/src/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/render/RawShader.java" afterPath="$PROJECT_DIR$/src/engine/render/RawShader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/render/space/planet/Planet.java" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/Planet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/util/ResourceManager.java" afterPath="$PROJECT_DIR$/src/engine/util/ResourceManager.java" />
     </list>
     <ignored path="Vulture.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +27,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="45" column="45" lean-forward="false" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+            <state relative-caret-position="84">
+              <caret line="43" column="34" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,9 +77,22 @@
       <file leaf-file-name="gasplanet.frag" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/shader/planet/gasplanet.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-26">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="861">
+              <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="779">
+                <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -109,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlanetGenerator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlanetGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/PlanetGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+            <state relative-caret-position="1517">
+              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -202,13 +202,13 @@
         <option value="$PROJECT_DIR$/src/engine/render/RawShader.java" />
         <option value="$PROJECT_DIR$/src/engine/util/ResourceManager.java" />
         <option value="$PROJECT_DIR$/res/shader/planet/planet.frag" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" />
         <option value="$PROJECT_DIR$/src/engine/render/space/planet/Planet.java" />
         <option value="$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java" />
-        <option value="$PROJECT_DIR$/src/engine/Main.java" />
         <option value="$PROJECT_DIR$/res/shader/planet/gasplanet.frag" />
         <option value="$PROJECT_DIR$/src/engine/render/space/planet/PlanetGenerator.java" />
+        <option value="$PROJECT_DIR$/src/engine/Main.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1131,23 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="656">
-            <caret line="16" column="79" lean-forward="false" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="11" column="107" lean-forward="false" selection-start-line="11" selection-start-column="107" selection-end-line="11" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/render/noise/Function2D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1256,14 +1239,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="45" column="45" lean-forward="false" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/Planet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1722">
@@ -1274,21 +1249,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/PlanetGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1517">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/shader/planet/gasplanet.frag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="861">
+          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/PlanetGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="84">
+          <caret line="43" column="34" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="779">
+            <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="11" column="107" lean-forward="false" selection-start-line="11" selection-start-column="107" selection-end-line="11" selection-end-column="107" />
+          <folding />
         </state>
       </provider>
     </entry>

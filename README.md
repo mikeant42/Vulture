@@ -5,7 +5,7 @@ Vulture is a WIP 2D engine built with LWJGL3.
 ## GLSL
 - The standard version number for shaders is #130.
 - Added the function #uniforminclude which allows one to include other GLSL sources into the shader from
-the source / CPU.
+the source / CPU. Right now you can only have one, but maybe create a Map<> later on so multiple can be used.
 
 Reminder: You must use setTextureSlot(...) when using multiple textures
 
@@ -15,6 +15,7 @@ The texture is passed on to GL, where it is colorized using a color table. Final
 
 TODO with planets
 - Perhaps implement some sort of lighting system - though maintain retro style.
+- Need to get usable gas giants.
 
 ## Fonts
 When creating font files with Hiero (libgdx font creator), **edit out all kerning information to avoid NumberException** .
