@@ -11,6 +11,7 @@ public class ResourceManager {
     private static final String MODEL_INCLUDE_PATH = "res/models/";
     private static final String TEXTURE_INCLUDE_PATH = "res/tex/";
     private static final String FONT_RES_PATH = "res/font";
+    private static final String PIC_RES_PATH = "pics/";
 
     public static String LoadPath(String string) {
         return string;
@@ -26,6 +27,10 @@ public class ResourceManager {
 
     public static String LoadTexturePath(String path) {
         return LoadPath(TEXTURE_INCLUDE_PATH + path);
+    }
+
+    public static String LoadPicturePath(String path) {
+        return LoadPath(PIC_RES_PATH + path);
     }
 
     public static String LoadFontPath(String path) {

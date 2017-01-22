@@ -19,3 +19,6 @@ TODO with planets
 
 ## Fonts
 When creating font files with Hiero (libgdx font creator), **edit out all kerning information to avoid NumberException** .
+
+## ResourceManager
+Not the prettiest thing in the world, definitely needs changing. Works for now, a little overdone.

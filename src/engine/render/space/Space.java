@@ -62,7 +62,7 @@ public class Space extends Node {
         shader.setUniform("starDensity", 3.5f);
         shader.setUniform("starRadius", 0.5f);
         shader.setUniform("starColor", new Vector3f(0.796078431372549f, 0.9254901960784314f, 0.9254901960784314f));
-        shader.setUniform("spaceColor", new Vector3f(0.35f, 0.3f, 0.3f));
+        shader.setUniform("spaceColor", new Vector3f(0.25f, 0.25f, 0.25f));
         shader.setUniform("speed", 0.2f);
 
 

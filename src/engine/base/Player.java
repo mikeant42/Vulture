@@ -4,6 +4,7 @@ import engine.input.KeyboardHandler;
 import engine.render.DisplayManager;
 import engine.render.sprite.Sprite;
 import engine.render.texture.Texture;
+import engine.util.GraphicsUtil;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -40,5 +41,6 @@ public class Player extends Sprite {
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_S)) {
             getTransform().getPosition().y -= speed;
         }
+
     }
 }

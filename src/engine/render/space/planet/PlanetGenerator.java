@@ -19,7 +19,7 @@ public class PlanetGenerator {
     private Planet planet;
 
     // The seed will come from the universe generator
-    private int seed = 10;
+    private int seed = 52;
 
     public PlanetGenerator(int type) {
         if (type == PLANET_TYPE_GAS) {
