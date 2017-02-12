@@ -1,4 +1,4 @@
-package engine.base;
+package engine.player;
 
 import engine.input.KeyboardHandler;
 import engine.render.DisplayManager;

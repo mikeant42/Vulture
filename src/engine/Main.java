@@ -1,9 +1,10 @@
 package engine;
 
 import engine.base.CoreEngine;
-import engine.base.Player;
+import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
+import engine.player.Starship;
 import engine.render.DisplayManager;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
@@ -11,7 +12,6 @@ import engine.render.gui.font.TextManager;
 import engine.render.space.Space;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
-import engine.util.GraphicsUtil;
 
 import java.io.File;
 
@@ -29,7 +29,7 @@ public class Main {
 
         Texture spriteTex = Texture.loadTexture("blackmage_m.png");
         spriteTex.setNumberOfRows(4);
-        Player player = new Player(spriteTex);
+        Starship player = new Starship(spriteTex);
         player.getTransform().setScale(0.08f);
 
         PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT);
