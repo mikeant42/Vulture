@@ -44,8 +44,8 @@ public class Camera {
             //position = player.getTransform().getPosition();
 
             // Smooth the camera using the "Michael Smooth" method
-            float posX = MathUtil.Lerp(position.x, this.player.getTransform().getPosition().x, 0.01f);
-            float posY = MathUtil.Lerp(position.y, this.player.getTransform().getPosition().y, 0.01f);
+            float posX = MathUtil.Lerp(position.x, this.player.getTransform().getPosition().x, 0.045f);
+            float posY = MathUtil.Lerp(position.y, this.player.getTransform().getPosition().y, 0.045f);
             position.x = posX;
             position.y = posY;
         }

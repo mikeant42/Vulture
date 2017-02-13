@@ -2,6 +2,7 @@ package engine.player;
 
 import engine.input.KeyboardHandler;
 import engine.render.DisplayManager;
+import engine.render.ship.StarshipSprite;
 import engine.render.sprite.Sprite;
 import engine.render.texture.Texture;
 import org.lwjgl.glfw.GLFW;
@@ -9,25 +10,26 @@ import org.lwjgl.glfw.GLFW;
 /**
  * Created by anarchist on 2/12/2017.
  */
-public class Starship extends Sprite {
+public class Starship extends StarshipSprite {
 
     private float thrust = 0.01f;
     private float decay = .97f;
-    private float maxSpeed = 5;
+    private float maxSpeed = 3;
 
-    private float turningSpeed = 50;
+    private float turningSpeed = 2;
 
     private float speed;
 
     private float xSpeed;
     private float ySpeed;
 
-    private float maxRotate = 60;
+    private float maxRotate = 5;
 
     private float rotate;
 
     public Starship(Texture texture) {
-        super(texture);
+        //super(texture);
+        super();
     }
 
     @Override
@@ -40,22 +42,23 @@ public class Starship extends Sprite {
             ySpeed *= maxSpeed/speed;
         }
 
-        getTransform().getPosition().y -= (float)DisplayManager.getFrameTimeSeconds() * ySpeed;
+        getTransform().getPosition().y += (float)DisplayManager.getFrameTimeSeconds() * ySpeed;
         getTransform().getPosition().x += (float)DisplayManager.getFrameTimeSeconds() * xSpeed;
-        getTransform().getRotation().x += (float)DisplayManager.getFrameTimeSeconds() *  rotate;
+
+        getTransform().getRotation().x -= (float)DisplayManager.getFrameTimeSeconds() *  rotate;
 
         // The rotate needs to die down over time
-        rotate *= 0.000025;
+        //rotate *= 0.000001;
     }
 
     @Override
     public void input() {
-        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_D)) {
+        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_A)) {
             if (rotate < maxRotate)
                 rotate += turningSpeed;
         }
 
-        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_A)) {
+        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_D)) {
             rotate -= turningSpeed;
         }
 

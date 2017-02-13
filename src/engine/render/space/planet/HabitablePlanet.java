@@ -28,6 +28,7 @@ public class HabitablePlanet extends Planet {
     private RawShader shader;
 
     private Texture texture;
+    private Texture cloudTex;
 
     // Texture size
     private int textureSize;
@@ -59,6 +60,7 @@ public class HabitablePlanet extends Planet {
         this.function = function;
 
         this.texture = new Texture(textureSize, textureSize, this.buildTexture(this.radius, this.textureSize, this.function));
+        this.cloudTex = Texture.loadTexture("cloudTex.png");
 
     }
 
@@ -140,6 +142,9 @@ public class HabitablePlanet extends Planet {
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         texture.bind();
 
+        GL13.glActiveTexture(GL13.GL_TEXTURE1);
+        cloudTex.bind();
+
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
@@ -166,7 +171,7 @@ public class HabitablePlanet extends Planet {
 
     @Override
     public void update() {
-        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.02f, this.getTransform().getRotation().y));
+        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.008f, this.getTransform().getRotation().y));
     }
 
 }
