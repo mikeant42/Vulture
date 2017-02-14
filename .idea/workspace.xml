@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2c1e0d4-688b-4a44-b874-e682998bcd29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/shader/ship/ship.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/render/ship/StarshipSprite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/player/Starship.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/player/Starship.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vulture/engine/render/Camera.class" afterPath="$PROJECT_DIR$/out/production/Vulture/engine/render/Camera.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shader/planet/planet.frag" afterPath="$PROJECT_DIR$/res/shader/planet/planet.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/Main.java" afterPath="$PROJECT_DIR$/src/engine/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/player/Starship.java" afterPath="$PROJECT_DIR$/src/engine/player/Starship.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/render/Camera.java" afterPath="$PROJECT_DIR$/src/engine/render/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" afterPath="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" />
     </list>
     <ignored path="Vulture.iws" />
@@ -58,28 +49,20 @@
       <file leaf-file-name="Starship.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/player/Starship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1092">
-              <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-              <folding />
+            <state relative-caret-position="378">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HabitablePlanet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HabitablePlanet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="173" column="96" lean-forward="false" selection-start-line="173" selection-start-column="96" selection-end-line="173" selection-end-column="96" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="planet.frag" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/shader/planet/planet.frag">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2510">
-              <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+            <state relative-caret-position="294">
+              <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -88,8 +71,8 @@
       <file leaf-file-name="ship.frag" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/shader/ship/ship.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="-578">
+              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -98,8 +81,8 @@
       <file leaf-file-name="GasPlanet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="164" column="96" lean-forward="false" selection-start-line="164" selection-start-column="96" selection-end-line="164" selection-end-column="96" />
+            <state relative-caret-position="532">
+              <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -201,14 +184,14 @@
         <option value="$PROJECT_DIR$/src/engine/render/space/Space.java" />
         <option value="$PROJECT_DIR$/src/engine/player/Player.java" />
         <option value="$PROJECT_DIR$/src/engine/render/Camera.java" />
-        <option value="$PROJECT_DIR$/src/engine/player/Starship.java" />
         <option value="$PROJECT_DIR$/src/engine/render/ship/StarshipSprite.java" />
         <option value="$PROJECT_DIR$/src/engine/Main.java" />
         <option value="$PROJECT_DIR$/res/shader/ship/ship.frag" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" />
         <option value="$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java" />
         <option value="$PROJECT_DIR$/res/shader/planet/planet.frag" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java" />
+        <option value="$PROJECT_DIR$/src/engine/player/Starship.java" />
       </list>
     </option>
   </component>
@@ -953,7 +936,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26788595" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26681128" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1133,13 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/shader/planet/gasplanet.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
-          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/shader/main.vert">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="656">
@@ -1208,10 +1184,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/render/space/Space.java">
+    <entry file="file://$PROJECT_DIR$/src/engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="207">
+          <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -1219,8 +1195,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="798">
-            <caret line="19" column="101" lean-forward="false" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
+          <first_editor relative-caret-position="756">
+            <caret line="18" column="83" lean-forward="false" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
             <folding />
           </first_editor>
           <second_editor />
@@ -1229,14 +1205,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shader/ship/ship.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1252,10 +1220,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/player/Starship.java">
+    <entry file="file://$PROJECT_DIR$/res/shader/planet/planet.frag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state relative-caret-position="3486">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shader/planet/gasplanet.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1268,34 +1244,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/Main.java">
+    <entry file="file://$PROJECT_DIR$/res/shader/ship/ship.frag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="173" column="96" lean-forward="false" selection-start-line="173" selection-start-column="96" selection-end-line="173" selection-end-column="96" />
+        <state relative-caret-position="-578">
+          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/GasPlanet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="164" column="96" lean-forward="false" selection-start-line="164" selection-start-column="96" selection-end-line="164" selection-end-column="96" />
+        <state relative-caret-position="532">
+          <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/shader/planet/planet.frag">
+    <entry file="file://$PROJECT_DIR$/src/engine/render/space/Space.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2510">
-          <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="336">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/player/Starship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/render/space/planet/HabitablePlanet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding />
         </state>
       </provider>

@@ -1,6 +1,7 @@
 package engine.player;
 
 import engine.input.KeyboardHandler;
+import engine.math.Vector2f;
 import engine.render.DisplayManager;
 import engine.render.ship.StarshipSprite;
 import engine.render.sprite.Sprite;
@@ -18,7 +19,7 @@ public class Starship extends StarshipSprite {
 
     private float turningSpeed = 2;
 
-    private float speed;
+    private float speed = 0;
 
     private float xSpeed;
     private float ySpeed;
@@ -26,6 +27,11 @@ public class Starship extends StarshipSprite {
     private float maxRotate = 5;
 
     private float rotate;
+
+    private float angle = 1;
+    private boolean driving = false;
+    private float accel = 0;
+    private Vector2f direction = new Vector2f();
 
     public Starship(Texture texture) {
         //super(texture);
@@ -42,34 +48,51 @@ public class Starship extends StarshipSprite {
             ySpeed *= maxSpeed/speed;
         }
 
-        getTransform().getPosition().y += (float)DisplayManager.getFrameTimeSeconds() * ySpeed;
-        getTransform().getPosition().x += (float)DisplayManager.getFrameTimeSeconds() * xSpeed;
-
-        getTransform().getRotation().x -= (float)DisplayManager.getFrameTimeSeconds() *  rotate;
+//        getTransform().getPosition().y += (float)DisplayManager.getFrameTimeSeconds() * ySpeed;
+//        getTransform().getPosition().x += (float)DisplayManager.getFrameTimeSeconds() * xSpeed;
+//
+//        getTransform().getRotation().x -= (float)DisplayManager.getFrameTimeSeconds() *  rotate;
 
         // The rotate needs to die down over time
         //rotate *= 0.000001;
+
+        if (accel < 0) {
+            accel = 0;
+        }
+
+        getTransform().getPosition().x += (direction.x * accel) * (float)DisplayManager.getFrameTimeSeconds();
+        getTransform().getPosition().y += (direction.y * accel) * (float)DisplayManager.getFrameTimeSeconds();
+        float newAngle = angle * (float)DisplayManager.getFrameTimeSeconds();
+        getTransform().getRotation().set(newAngle, newAngle);
     }
 
     @Override
     public void input() {
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_A)) {
-            if (rotate < maxRotate)
-                rotate += turningSpeed;
+            angle -= 50;
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_D)) {
-            rotate -= turningSpeed;
+            angle += 50;
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_W)) {
-            xSpeed += thrust*Math.sin(rotate*(Math.PI/180));
-            ySpeed += thrust*Math.cos(rotate*(Math.PI/180));
+            if (!driving) {
+                driving = true;
+                accel += 0.2f;
+            }
+
+            direction = new Vector2f((float)Math.cos(angle), (float)Math.sin(angle));
+
+            accel += 0.02f;
+            if (accel > 0.5f) {
+                accel = 0.5f;
+            }
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_S)) {
-            xSpeed *= decay;
-            ySpeed *= decay;
+            driving = false;
+            accel -= 0.06f;
         }
 
     }

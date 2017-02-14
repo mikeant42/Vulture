@@ -16,8 +16,7 @@ The texture is passed on to GL, where it is colorized using a color table. Final
 TODO with planets from space
 - Perhaps implement some sort of lighting system - though maintain retro style.
 - Need to get usable gas giants.
-- Add dynamic clouds using `time`
-- Make the clouds only encircle the planet by subtracting `atmosphereBorder` to the distance - center
+- Have all of the clouds across the planet at once - regardless of `time` veriable.
 
 # Starship
 So far, the starship is not in very good shape. The appearance badly needs reworking, and the controls go all over the place.
