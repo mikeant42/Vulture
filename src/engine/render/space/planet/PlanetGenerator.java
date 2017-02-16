@@ -1,5 +1,6 @@
 package engine.render.space.planet;
 
+import engine.algo.PlanetNameGenerator;
 import engine.render.noise.Fractal2D;
 import engine.render.noise.Function2D;
 import engine.render.noise.SimplexNoise;
@@ -38,6 +39,7 @@ public class PlanetGenerator {
 
             planet.generate(colorMap, function);
             planet.getTransform().setScale(0.7f);
+            PlanetNameGenerator.generate(seed);
         }
 
 

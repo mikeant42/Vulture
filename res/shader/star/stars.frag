@@ -23,6 +23,10 @@ float starrand(float seedx, float seedy, int seedp) {
     );
 }
 
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
 void main(void) {
 
     vec2 position = pass_texCoords.xy * resolution.xy;
@@ -41,14 +45,14 @@ void main(void) {
         );
         float px = scale / 80.0 / 3.0;
         float size = 1.0 / (scale * ( 500.0 / starDensity ) );
-        float brite = 1.0;
+        float brite = 0.1;
 
         if( size < px ) {
             brite = size / px;
             size = px;
         }
 
-        outColor.rgb += starColor * min(
+        outColor.rgb += vec3(rand(starColor.xy), rand(starColor.xx), rand(starColor.xz)) * min(
             1.0, max(0.0, starDensity - length(spos - fract(vpos)) / size)
         ) * brite;
     }
