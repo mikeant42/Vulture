@@ -1,4 +1,4 @@
-package engine.render.noise;
+package engine.algo.noise;
 
 /**
  * Created by anarchist on 1/4/17.

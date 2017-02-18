@@ -1,23 +1,19 @@
 package engine.render.space.planet;
 
 import engine.base.CoreEngine;
-import engine.base.Node;
 import engine.math.Matrix4f;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.math.Vector4f;
 import engine.render.Quad;
 import engine.render.RawShader;
-import engine.render.noise.*;
+import engine.algo.noise.*;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by anarchist on 1/4/17.
@@ -42,6 +38,7 @@ public class HabitablePlanet extends Planet {
     private Vector2f center = new Vector2f(0.5f, 0.5f);
     private float atmosphereBorder = 0.05f;
     private Vector3f atmosphereColor = new Vector3f(0.2f, 0.4f, 0.5f);
+    private String name;
 
     public HabitablePlanet() {
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
@@ -64,6 +61,15 @@ public class HabitablePlanet extends Planet {
 
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    protected void setName(String name) {
+        this.name = name;
+    }
 
     public float getRotationSpeed() {
         return rotationSpeed;

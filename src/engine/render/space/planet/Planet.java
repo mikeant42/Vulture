@@ -3,7 +3,7 @@ package engine.render.space.planet;
 import engine.base.Node;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
-import engine.render.noise.Function2D;
+import engine.algo.noise.Function2D;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -36,6 +36,9 @@ public abstract class Planet extends Node {
 
     public abstract Vector3f getAtmosphereColor();
     public abstract void setAtmosphereColor(Vector3f color);
+
+    public abstract String getName();
+    protected abstract void setName(String name);
 
 
     // Distorts the texture at the poles to give the impression of being spherical
@@ -80,6 +83,15 @@ public abstract class Planet extends Node {
 
     }
 
+    /*
+    TODO - move this to a math class or something
+     */
+    public boolean isHovering(Vector2f loc) {
+        float dx = getTransform().getPosition().x - loc.x;
+        float dy = getTransform().getPosition().y - loc.y;
+        float r = getPlanetRadius() + 0.2f;
+        return dx * dx + dy * dy <= r * r;
+    }
 
 
 }

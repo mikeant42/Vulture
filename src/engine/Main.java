@@ -12,6 +12,7 @@ import engine.render.gui.font.TextManager;
 import engine.render.space.Space;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
+import engine.terrain.Terrain;
 
 import java.io.File;
 
@@ -55,14 +56,24 @@ public class Main {
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
 
+        String planetName = "";
+
+        Terrain terr = new Terrain();
+        CoreEngine.addEntity(terr);
+
 
         while (!DisplayManager.getShouldWindowClose()) {
 
             CoreEngine.update();
             TextManager.render();
 
+            if (planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
+                planetName = planetGen.getPlanet().getName();
+            } else {
+                planetName = "";
+            }
 
-
+            text.updateText("Planet: " + planetName);
 
             DisplayManager.loop();
         }

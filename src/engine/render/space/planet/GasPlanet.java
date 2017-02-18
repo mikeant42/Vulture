@@ -7,7 +7,7 @@ import engine.math.Vector3f;
 import engine.math.Vector4f;
 import engine.render.Quad;
 import engine.render.RawShader;
-import engine.render.noise.Function2D;
+import engine.algo.noise.Function2D;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;
@@ -38,11 +38,22 @@ public class GasPlanet extends Planet {
     private float atmosphereBorder = 0.05f;
     private Vector3f atmosphereColor = new Vector3f(0.2f, 0.4f, 0.5f);
 
+    private String name;
+
     public GasPlanet() {
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
         quad = CoreEngine.getLoader().loadToVAO(positions, 2);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    protected void setName(String name) {
+        this.name = name;
+    }
 
     public void generate(String colorMap, Function2D function) {
         this.shader = new RawShader("default.vert", "planet/gasplanet.frag", colorMap);

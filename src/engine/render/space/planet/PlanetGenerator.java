@@ -1,10 +1,9 @@
 package engine.render.space.planet;
 
 import engine.algo.PlanetNameGenerator;
-import engine.render.noise.Fractal2D;
-import engine.render.noise.Function2D;
-import engine.render.noise.SimplexNoise;
-import engine.render.noise.VoronoiNoise;
+import engine.algo.noise.Fractal2D;
+import engine.algo.noise.Function2D;
+import engine.algo.noise.SimplexNoise;
 
 /**
  * Created by anarchist on 1/18/17.
@@ -20,6 +19,7 @@ public class PlanetGenerator {
     private Planet planet;
 
     // The seed will come from the universe generator
+    // This is the seed specific to the planet
     private int seed = 52;
 
     public PlanetGenerator(int type) {
@@ -31,6 +31,7 @@ public class PlanetGenerator {
 
             planet.generate(colorMap, function);
             planet.getTransform().setScale(0.7f);
+            planet.setName(PlanetNameGenerator.generate(seed));
         } else {
             planet = new HabitablePlanet();
 
@@ -39,7 +40,7 @@ public class PlanetGenerator {
 
             planet.generate(colorMap, function);
             planet.getTransform().setScale(0.7f);
-            PlanetNameGenerator.generate(seed);
+            planet.setName(PlanetNameGenerator.generate(seed));
         }
 
 

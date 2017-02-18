@@ -1,4 +1,4 @@
-package engine.render.noise;
+package engine.algo.noise;
 
 
 /*
