@@ -116,6 +116,10 @@ public class RawShader {
         }
     }
 
+    private void loadFloatArray(int loc, float[] arr) {
+        GL20.glUniform3fv(loc, arr);
+    }
+
     private void loadVector4(int location, Vector4f vector4f) {
         GL20.glUniform4f(location, vector4f.x, vector4f.y, vector4f.z, vector4f.w);
     }
@@ -169,6 +173,17 @@ public class RawShader {
             uniformMap.put(name, loc);
         }
         loadBoolean(loc, val);
+    }
+
+    public void setUniform(String name, float[] val) {
+        int loc;
+        if (inMap(name)) {
+            loc = uniformMap.get(name);
+        } else {
+            loc = getUniformLocation(name);
+            uniformMap.put(name, loc);
+        }
+        loadFloatArray(loc, val);
     }
 
     public void setUniform(String name, Matrix4f val) {

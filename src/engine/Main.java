@@ -30,7 +30,7 @@ public class Main {
 
         Texture spriteTex = Texture.loadTexture("blackmage_m.png");
         spriteTex.setNumberOfRows(4);
-        Starship player = new Starship(spriteTex);
+        Player player = new Player(spriteTex);
         player.getTransform().setScale(0.1f);
 
         PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT);
