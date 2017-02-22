@@ -36,21 +36,29 @@ public class Terrain extends Node {
 
     private ArrayList<MetaBall> metaBalls = new ArrayList<>();
 
-    private float[] metaData;
+    private int numVerts = 50;
+    private float[] terrain_array = new float[numVerts*2];
+    private float roughness = 0.55f;
+    private Function2D function;
 
+    private float[] positions =new float[] {
+            -1.0f,  1.0f, // top left
+            -1.0f, -1.0f, // bottom left
+            1.0f,  1.0f, // top right
+            1.0f, -1.0f, // bottom right
+    };
 
     public Terrain() {
         shader = new RawShader("default.vert", "terrain/terrain.frag");
-        float[] positions =new float[] {
-                -1.0f,  1.0f, // top left
-                -1.0f, -1.0f, // bottom left
-                1.0f,  1.0f, // top right
-                1.0f, -1.0f, // bottom right
-                };
-        quad = CoreEngine.getLoader().loadToVAO(positions, 2);
+
+        this.function = new Fractal2D(new SimplexNoise(10), 6, 0.8f);
+
+        generateTerrain();
+
+        quad = CoreEngine.getLoader().loadToVAO(terrain_array, 2);
 
         //this.getTransform().setScale(0.3f);
-        metaData = buildBalls();
+
     }
 
     private float[] buildBalls() {
@@ -73,6 +81,14 @@ public class Terrain extends Node {
         return data;
     }
 
+    private void generateTerrain() {
+        for (int i = 0; i < numVerts; i++) {
+            float tl = positions[1];
+            float bl = positions[2];
+            terrain_array[i] = function.eval(tl, bl);
+        }
+    }
+
     @Override
     public void render() {
         shader.start();
@@ -88,7 +104,7 @@ public class Terrain extends Node {
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
-        shader.setUniform("metaBalls", metaData);
+        //shader.setUniform("metaBalls", metaData);
 
         this.shader.loadDefaults();
 
