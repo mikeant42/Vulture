@@ -39,6 +39,12 @@ public class CoreEngine {
         nodes = rootNode.getAllChildren();
     }
 
+    public static void addEntities(List<Node> node) {
+        rootNode.addChildren(nodes);
+
+        nodes = rootNode.getAllChildren();
+    }
+
     public static void update() {
         for (Node node : nodes) {
             camera.update();

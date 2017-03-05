@@ -1,6 +1,7 @@
 package engine;
 
 import engine.base.CoreEngine;
+import engine.base.Node;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -15,6 +16,7 @@ import engine.render.texture.Texture;
 import engine.terrain.Terrain;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by anarchist on 8/28/16.
@@ -23,6 +25,7 @@ public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay("Vulture Engine");
 
+        ArrayList<Node> spaceZone = new ArrayList<>();
 
         CoreEngine.init();
 
@@ -39,9 +42,9 @@ public class Main {
         Space thing = new Space();
         thing.getTransform().setScale(5f);
         thing.getTransform().setPosition(new Vector2f(0,0));
-        CoreEngine.addEntity(thing);
+        spaceZone.add(thing);
 
-        CoreEngine.addEntity(planetGen.getPlanet());
+        spaceZone.add(planetGen.getPlanet());
 
         FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
@@ -51,7 +54,7 @@ public class Main {
         TextManager.loadText(text);
 
         //sprite.addChild(charSprite);
-        CoreEngine.addEntity(player);
+        spaceZone.add(player);
         CoreEngine.getCamera().setPlayer(player);
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
@@ -60,7 +63,7 @@ public class Main {
 
         Terrain terr = new Terrain();
         CoreEngine.addEntity(terr);
-
+        CoreEngine.addEntities(spaceZone);
 
         while (!DisplayManager.getShouldWindowClose()) {
 
