@@ -25,7 +25,6 @@ public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay("Vulture Engine");
 
-        ArrayList<Node> spaceZone = new ArrayList<>();
 
         CoreEngine.init();
 
@@ -42,9 +41,9 @@ public class Main {
         Space thing = new Space();
         thing.getTransform().setScale(5f);
         thing.getTransform().setPosition(new Vector2f(0,0));
-        spaceZone.add(thing);
+        CoreEngine.addEntity(thing);
 
-        spaceZone.add(planetGen.getPlanet());
+        CoreEngine.addEntity(planetGen.getPlanet());
 
         FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
@@ -54,26 +53,26 @@ public class Main {
         TextManager.loadText(text);
 
         //sprite.addChild(charSprite);
-        spaceZone.add(player);
+        CoreEngine.addEntity(player);
         CoreEngine.getCamera().setPlayer(player);
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
 
-        String planetName = "";
+        String p1 = planetGen.getPlanet().getName();
+        String planetName;
 
         Terrain terr = new Terrain();
         CoreEngine.addEntity(terr);
-        CoreEngine.addEntities(spaceZone);
 
         while (!DisplayManager.getShouldWindowClose()) {
 
             CoreEngine.update();
             TextManager.render();
 
-            if (planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
-                planetName = planetGen.getPlanet().getName();
-            } else {
+            if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
                 planetName = "";
+            } else {
+                planetName = p1;
             }
 
             text.updateText("Planet: " + planetName);
