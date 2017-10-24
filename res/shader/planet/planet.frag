@@ -22,7 +22,7 @@ vec2 lightPos = vec2(0.2, 0.2);
 vec3 DIFFUSE_LIGHT = vec3(1,1,1);
 vec3 AMBIENT_LIGHT = vec3(0.5,0.5,0.5);
 
-//Cloud SETTINGS//
+//Cloud SETTINGS - these all need to be uniforms//
 const float timeScale = 0.8;
 const float cloudScale = 0.005;
 const float skyCover = 0.04;
@@ -33,7 +33,6 @@ const float curlStrain = 3.0;
 //SETTINGS//
 
 #uniforminclude
-
 
 float saturate(float num)
 {
@@ -87,8 +86,8 @@ vec4 clouds(vec4 bottom) {
     float color1 = fbm(uv-0.5+time*0.00004*timeScale);
     float color2 = fbm(uv-10.5+time*0.00002*timeScale);
 
-    float clouds1 = smoothstep(1.0-cover,min((1.0-cover)+softness*2.0,1.0),color1);
-    float clouds2 = smoothstep(1.0-cover,min((1.0-cover)+softness,1.0),color2);
+    float clouds1 = smoothstep(1-cover,min((1.0-cover)+softness*2.0,1.0),color1);
+    float clouds2 = smoothstep(1-cover,min((1.0-cover)+softness,1.0),color2);
 
     float cloudsFormComb = saturate(clouds1+clouds2);
 

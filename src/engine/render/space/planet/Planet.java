@@ -1,12 +1,14 @@
 package engine.render.space.planet;
 
 import engine.base.Node;
+import engine.base.Seed;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.algo.noise.Function2D;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  * Created by anarchist on 1/18/17.
@@ -60,6 +62,12 @@ public abstract class Planet extends Node {
         dest.y = ry * (1 - x * x) / (z * tmp + ry * y);
 
         return dest;
+    }
+
+    protected Vector3f genRandomAtmoColor(Seed seed) {
+        Random random = new Random();
+        random.setSeed(seed.seed);
+        return new Vector3f((float)Math.random(), (float)Math.random(), (float)Math.random());
     }
 
     // Actually builds the texture. Might want to relocate to Fractal2D class, but also important to
