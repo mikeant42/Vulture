@@ -1,11 +1,11 @@
 package engine;
 
 import engine.base.CoreEngine;
-import engine.base.Node;
+import engine.base.PlayerScene;
+import engine.base.Seed;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
-import engine.player.Starship;
 import engine.render.DisplayManager;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
@@ -16,7 +16,6 @@ import engine.render.texture.Texture;
 import engine.terrain.Terrain;
 
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Created by anarchist on 8/28/16.
@@ -24,6 +23,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay("Vulture Engine");
+
+        Seed seed = new Seed();
+        seed.seed = 52;
+        PlayerScene spaceScene = new PlayerScene(seed);
 
 
         CoreEngine.init();
@@ -41,9 +44,9 @@ public class Main {
         Space thing = new Space();
         thing.getTransform().setScale(5f);
         thing.getTransform().setPosition(new Vector2f(0,0));
-        CoreEngine.addEntity(thing);
+        spaceScene.addEntity(thing);
 
-        CoreEngine.addEntity(planetGen.getPlanet());
+        spaceScene.addEntity(planetGen.getPlanet());
 
         FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
@@ -53,26 +56,33 @@ public class Main {
         TextManager.loadText(text);
 
         //sprite.addChild(charSprite);
-        CoreEngine.addEntity(player);
+        spaceScene.addEntity(player);
         CoreEngine.getCamera().setPlayer(player);
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
 
         String p1 = planetGen.getPlanet().getName();
-        String planetName;
+        String planetName = "";
+
+        PlayerScene terrainScene = new PlayerScene(seed);
 
         Terrain terr = new Terrain();
-        CoreEngine.addEntity(terr);
+        terrainScene.addEntity(terr);
+        terrainScene.addEntity(player);
+
+        CoreEngine.setScene(terrainScene);
 
         while (!DisplayManager.getShouldWindowClose()) {
 
             CoreEngine.update();
             TextManager.render();
 
-            if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
-                planetName = "";
-            } else {
-                planetName = p1;
+            if (spaceScene.isActive()) {
+                if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
+                    planetName = "";
+                } else {
+                    planetName = p1;
+                }
             }
 
             text.updateText("Planet: " + planetName);

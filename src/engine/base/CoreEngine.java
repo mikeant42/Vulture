@@ -8,19 +8,17 @@ import java.util.List;
 
 /**
  * Created by anarchist on 8/30/16.
+ * The PlayerScene must be set
  */
 public class CoreEngine {
     private static Camera camera;
-    private static Node rootNode;
+
     private static Loader loader;
 
-    private static List<Node> nodes = new ArrayList<>();
+    private static PlayerScene scene;
 
     public static void init() {
         camera = new Camera();
-
-        rootNode = new Node("Root");
-        nodes = rootNode.getAllChildren();
 
         loader = new Loader();
     }
@@ -33,25 +31,21 @@ public class CoreEngine {
         return loader;
     }
 
-    public static void addEntity(Node node) {
-        rootNode.addChild(node);
-
-        nodes = rootNode.getAllChildren();
+    public static void setScene(PlayerScene scenee) {
+        if (scene != null) {
+            scene.setActive(false);
+        }
+        scene = scenee;
+        scene.setActive(true);
     }
 
-    public static void addEntities(List<Node> node) {
-        rootNode.addChildren(nodes);
-
-        nodes = rootNode.getAllChildren();
-    }
+//    public static void addEntities(List<Node> node) {
+//        rootNode.addChildren(nodes);
+//
+//        nodes = rootNode.getAllChildren();
+//    }
 
     public static void update() {
-        for (Node node : nodes) {
-            camera.update();
-
-            node.input();
-            node.update();
-            node.render();
-        }
+        scene.update(camera);
     }
 }
