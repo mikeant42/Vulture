@@ -3,6 +3,7 @@ package engine;
 import engine.base.CoreEngine;
 import engine.base.PlayerScene;
 import engine.base.Seed;
+import engine.input.KeyboardHandler;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -14,7 +15,8 @@ import engine.render.space.Space;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 import engine.terrain.Terrain;
-
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import java.io.File;
 
 /**
@@ -37,6 +39,7 @@ public class Main {
         spriteTex.setNumberOfRows(4);
         Player player = new Player(spriteTex);
         player.getTransform().setScale(0.1f);
+        player.getTransform().setPosition(new Vector2f(0,1.5f));
 
         PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT);
 
@@ -71,6 +74,7 @@ public class Main {
         terrainScene.addEntity(player);
 
         CoreEngine.setScene(terrainScene);
+        //CoreEngine.setScene(spaceScene);
 
         while (!DisplayManager.getShouldWindowClose()) {
 
