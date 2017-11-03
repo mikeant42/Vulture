@@ -37,6 +37,24 @@ public class Space extends Node {
 
     }
 
+//    private Texture generateTexture(int width, int height, float density, float brightness,
+//                    float prng) {
+//        int count = Math.round(width * height * density);
+//        int[] data = new int[width * height * 3];
+//
+//        for (int i = 0; i < count; i++) {
+//            int r = (int)Math.floor(prng * width * height);
+//            int c = (int)Math.round(255 * Math.log(1-prng) * brightness);
+//
+//            data[r * 3 + 0] = c;
+//            data[r * 3 + 1] = c;
+//            data[r * 3 + 2] = c;
+//        }
+//
+//        return data;
+//
+//    }
+
 
     @Override
     public void render() {

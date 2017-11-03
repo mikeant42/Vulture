@@ -1,5 +1,7 @@
 package engine.base;
 
+import engine.physics.PhysicsEngine;
+import engine.player.Player;
 import engine.render.Camera;
 
 import java.util.ArrayList;
@@ -19,10 +21,19 @@ public class PlayerScene {
     private List<Node> nodes = new ArrayList<>();
     private Seed seed;
     private boolean active = false;
+    private PhysicsEngine physicsEngine;
 
     public PlayerScene(Seed seed) {
         rootNode = new Node("Scene"+seed.seed);
         nodes = rootNode.getAllChildren();
+    }
+
+    public PhysicsEngine getPhysicsEngine() {
+        return physicsEngine;
+    }
+
+    public void setPhysicsEngine(PhysicsEngine physicsEngine) {
+        this.physicsEngine = physicsEngine;
     }
 
     public void addEntity(Node node) {
@@ -32,6 +43,8 @@ public class PlayerScene {
     }
 
     public void update(Camera camera) {
+        physicsEngine.integrate();
+
         for (Node node : nodes) {
             camera.update();
 

@@ -59,6 +59,7 @@ public class Sprite extends Node {
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
+
         //
         shader.setUniform("numberOfRows", texture.getNumberOfRows());
         shader.setUniform("offset", spriteAnimator.getCurrentFrame());

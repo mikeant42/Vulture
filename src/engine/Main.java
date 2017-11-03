@@ -4,6 +4,7 @@ import engine.base.CoreEngine;
 import engine.base.PlayerScene;
 import engine.base.Seed;
 import engine.input.KeyboardHandler;
+import engine.physics.GroundPhysicsEngine;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -69,9 +70,13 @@ public class Main {
 
         PlayerScene terrainScene = new PlayerScene(seed);
 
+
         Terrain terr = new Terrain();
         terrainScene.addEntity(terr);
         terrainScene.addEntity(player);
+
+        GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terr);
+        terrainScene.setPhysicsEngine(physicsEngine);
 
         CoreEngine.setScene(terrainScene);
         //CoreEngine.setScene(spaceScene);

@@ -1,6 +1,7 @@
 package engine.player;
 
 import engine.input.KeyboardHandler;
+import engine.physics.AABB;
 import engine.render.DisplayManager;
 import engine.render.sprite.Sprite;
 import engine.render.texture.Texture;
@@ -15,6 +16,7 @@ public class Player extends Sprite {
 
     private float speed;
     private float sensitivity = 0.7f;
+    private AABB aabb;
 
     public Player(Texture texture) {
         super(texture);
