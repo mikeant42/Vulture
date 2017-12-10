@@ -9,6 +9,7 @@ import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.render.DisplayManager;
+import engine.render.ground.Sky;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
 import engine.render.gui.font.TextManager;
@@ -16,6 +17,7 @@ import engine.render.space.Space;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 import engine.terrain.Terrain;
+import engine.terrain.TiledTerrain;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import java.io.File;
@@ -69,13 +71,19 @@ public class Main {
         String planetName = "";
 
         PlayerScene terrainScene = new PlayerScene(seed);
+        Sky sky = new Sky();
+        sky.getTransform().setScale(5f);
+        sky.getTransform().setPosition(new Vector2f(0,0));
+        terrainScene.addEntity(sky);
 
 
-        Terrain terr = new Terrain();
-        terrainScene.addEntity(terr);
+        TiledTerrain terrain = new TiledTerrain();
+        terrain.addToScene(terrainScene);
         terrainScene.addEntity(player);
 
-        GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terr);
+
+
+        GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terrain);
         terrainScene.setPhysicsEngine(physicsEngine);
 
         CoreEngine.setScene(terrainScene);

@@ -1,4 +1,4 @@
-package engine.render.space;
+package engine.render.ground;
 
 import engine.base.CoreEngine;
 import engine.base.Node;
@@ -17,17 +17,17 @@ import org.lwjgl.opengl.GL30;
 /**
  * Created by anarchist on 1/3/17.
  */
-public class Space extends Node {
+public class Sky extends Node {
 
     private Quad quad;
     private RawShader shader;
     private Texture texture;
 
-    public Space() {
-        this(new RawShader("default.vert", "star/stars.frag"));
+    public Sky() {
+        this(new RawShader("default.vert", "sky/sky.frag"));
     }
 
-    public Space(RawShader shader) {
+    public Sky(RawShader shader) {
         super();
 
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
@@ -36,24 +36,6 @@ public class Space extends Node {
         this.texture = Texture.loadTexture("StoneWall.png");
 
     }
-
-//    private Texture generateTexture(int width, int height, float density, float brightness,
-//                    float prng) {
-//        int count = Math.round(width * height * density);
-//        int[] data = new int[width * height * 3];
-//
-//        for (int i = 0; i < count; i++) {
-//            int r = (int)Math.floor(prng * width * height);
-//            int c = (int)Math.round(255 * Math.log(1-prng) * brightness);
-//
-//            data[r * 3 + 0] = c;
-//            data[r * 3 + 1] = c;
-//            data[r * 3 + 2] = c;
-//        }
-//
-//        return data;
-//
-//    }
 
 
     @Override

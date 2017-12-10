@@ -9,12 +9,12 @@ import engine.math.Vector2f;
 public class Transform {
     private Vector2f position;
     private Vector2f rotation;
-    private float scale;
+    private Vector2f scale;
 
     public Transform(Vector2f position, Vector2f rotation, float scale) {
         this.position = position;
         this.rotation = rotation;
-        this.scale = scale;
+        this.scale = new Vector2f(scale,scale);
     }
 
     public Transform() {
@@ -38,10 +38,18 @@ public class Transform {
     }
 
     public float getScale() {
+        return scale.x;
+    }
+
+    public Vector2f getFullScale() {
         return scale;
     }
 
-    public void setScale(float scale) {
+    public void setScale(Vector2f scale) {
         this.scale = scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = new Vector2f(scale, scale);
     }
 }

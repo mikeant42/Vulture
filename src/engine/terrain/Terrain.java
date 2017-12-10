@@ -34,6 +34,9 @@ public class Terrain extends Node {
     private float[] heights;
     private float[] vertices;
 
+    int LENGTH = 500;
+    int res=512; // No lower than 2
+
     Fractal2D noise = new Fractal2D(new SimplexNoise(30), 2, 0.6f);
 
 
@@ -63,24 +66,29 @@ public class Terrain extends Node {
 
     }
 
-    public float getHeight(int x) {
-        float y=-1;
-        for (int i = 0; i < vertices.length; i++) {
-            float xx = vertices[i];
-            float yy = vertices[i+1];
-            if (xx == x) {
-                y = yy;
-                break;
-            }
-            i+=3;
-        }
-        return y;
+//    public float getHeight(int x) {
+//        float y=-1;
+//        for (int i = 0; i < vertices.length; i++) {
+//            float xx = vertices[i];
+//            float yy = vertices[i+1];
+//            if (xx == x) {
+//                y = yy;
+//                break;
+//            }
+//            i+=3;
+//        }
+//        return y;
+//    }
+
+
+    float lerp(float a, float b, float f)
+    {
+        return (float) (a * (1.0 - f)) + (b * f);
     }
 
     private float[] genPositions() {
 
-        int LENGTH = 500;
-        int res=512; // No lower than 2
+
 
         float x = -3f;     //current position to put vertices
         float med = 3; //starting y
@@ -130,7 +138,7 @@ public class Terrain extends Node {
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         texture.bind();
-        Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, new Vector2f(this.getTransform().getScale(), this.getTransform().getScale()));
+        Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 

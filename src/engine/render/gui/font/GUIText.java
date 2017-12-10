@@ -3,7 +3,6 @@ package engine.render.gui.font;
 
 import engine.math.Vector2f;
 import engine.math.Vector3f;
-import sun.font.FontManager;
 
 /**
  * Represents a piece of text in the game.
