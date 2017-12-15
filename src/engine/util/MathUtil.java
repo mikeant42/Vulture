@@ -1,5 +1,6 @@
 package engine.util;
 
+import engine.base.Seed;
 import engine.math.Matrix4f;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -52,11 +53,33 @@ public class MathUtil {
         return random.nextFloat();
     }
 
+    public static float psrandomFloat(Seed seed) {
+        Random random = new Random(seed.seed);
+        return random.nextFloat();
+    }
+
+    public static int psrandomInt(Seed seed) {
+        Random random = new Random(seed.seed);
+        return random.nextInt();
+    }
+
     public static float randomNextFloat(float a, float b) {
         float random = randomNextFloat();
         float diff = b - a;
         float r = random * diff;
         return a + r;
+    }
+
+    public static float psrandomFloat(float a, float b, Seed seed) {
+        float random = psrandomFloat(seed);
+        float diff = b - a;
+        float r = random * diff;
+        return a + r;
+    }
+
+    public static int psrandomInt(int lower, int upper, Seed seed) {
+        Random random = new Random(seed.seed);
+        return random.nextInt(upper - lower) + lower;
     }
 
     // Used for smoothing

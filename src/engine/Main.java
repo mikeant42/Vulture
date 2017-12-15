@@ -14,10 +14,12 @@ import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
 import engine.render.gui.font.TextManager;
 import engine.render.space.Space;
+import engine.render.space.SpaceScene;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 import engine.terrain.Terrain;
 import engine.terrain.TiledTerrain;
+import engine.util.MathUtil;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import java.io.File;
@@ -31,7 +33,6 @@ public class Main {
 
         Seed seed = new Seed();
         seed.seed = 52;
-        PlayerScene spaceScene = new PlayerScene(seed);
 
 
         CoreEngine.init();
@@ -44,15 +45,9 @@ public class Main {
         player.getTransform().setScale(0.1f);
         player.getTransform().setPosition(new Vector2f(0,1.5f));
 
-        PlanetGenerator planetGen = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT);
+        SpaceScene spaceScene = new SpaceScene(seed);
 
 
-        Space thing = new Space();
-        thing.getTransform().setScale(5f);
-        thing.getTransform().setPosition(new Vector2f(0,0));
-        spaceScene.addEntity(thing);
-
-        spaceScene.addEntity(planetGen.getPlanet());
 
         FontType font = new FontType(Texture.loadTexture("font/BadMofo.png").getTextureID(), new File("res/tex/font/BadMofo.fnt"));
 
@@ -67,8 +62,8 @@ public class Main {
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
 
-        String p1 = planetGen.getPlanet().getName();
-        String planetName = "";
+        //String p1 = planetGen.getPlanet().getName();
+        String planetName = "helloworld";
 
         PlayerScene terrainScene = new PlayerScene(seed);
         Sky sky = new Sky();
@@ -84,21 +79,36 @@ public class Main {
 
 
         GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terrain);
-        terrainScene.setPhysicsEngine(physicsEngine);
 
-        CoreEngine.setScene(terrainScene);
-        //CoreEngine.setScene(spaceScene);
+        //terrainScene.setPhysicsEngine(physicsEngine);
+        //CoreEngine.setScene(terrainScene);
+
+
+        CoreEngine.setScene(spaceScene);
+        spaceScene.setPhysicsEngine(physicsEngine);
+
 
         while (!DisplayManager.getShouldWindowClose()) {
 
             CoreEngine.update();
             TextManager.render();
 
-            if (spaceScene.isActive()) {
-                if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
-                    planetName = "";
-                } else {
-                    planetName = p1;
+//            if (spaceScene.isActive()) {
+//                if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
+//                    planetName = "";
+//                } else {
+//                    planetName = p1;
+//                    if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_L)) {
+//                        terrainScene.setPhysicsEngine(physicsEngine);
+//                        CoreEngine.setScene(terrainScene);
+//                    }
+//                }
+//            }
+
+            if (terrainScene.isActive()) {
+                if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_Q)) {
+                    CoreEngine.setScene(spaceScene);
+                    spaceScene.setPhysicsEngine(physicsEngine);
                 }
             }
 

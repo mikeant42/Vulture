@@ -27,7 +27,7 @@ const float timeScale = 0.8;
 const float cloudScale = 0.005;
 const float skyCover = 0.04;
 const float softness = 0.2;
-const float brightness = 1.0;
+const float brightness = 0.7;
 const int noiseOctaves = 8;
 const float curlStrain = 3.0;
 //SETTINGS//
@@ -134,7 +134,8 @@ void main() {
     float dist =  sqrt(dot(uv, uv));
 
     // Create atmosphere / fade out
-    float t = 1.0 + smoothstep(radius, radius + atmosphereBorder, dist)
+    float atmosphereIntensity = 1.5;
+    float t = atmosphereIntensity + smoothstep(radius, radius + atmosphereBorder, dist)
                     - smoothstep(radius - atmosphereBorder, radius, dist);
 
     //ultColor = mix(atmosphereColor, ultColor ,t);

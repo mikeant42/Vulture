@@ -15,7 +15,7 @@ public class Player extends Sprite {
 
 
     private float speed;
-    private float sensitivity = 0.7f;
+    private float sensitivity = 1.4f;
     private AABB aabb;
 
     public Player(Texture texture) {

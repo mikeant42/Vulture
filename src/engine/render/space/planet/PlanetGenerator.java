@@ -22,10 +22,10 @@ public class PlanetGenerator {
 
     // The seed will come from the universe generator
     // This is the seed specific to the planet
-    private Seed seed = new Seed();
+    private Seed seed;
 
-    public PlanetGenerator(int type) {
-        seed.seed = 52;
+    public PlanetGenerator(int type, Seed seed) {
+        this.seed = seed;
 
         if (type == PLANET_TYPE_GAS) {
             planet = new GasPlanet();
@@ -44,7 +44,6 @@ public class PlanetGenerator {
             //this.colorMap = "colormap/MATLAB_autumn.frag";
 
             planet.generate(colorMap, function);
-            planet.setAtmosphereColor(new Vector3f(0.7f, 0.2f, 0.2f));
             planet.getTransform().setScale(0.7f);
             planet.setName(PlanetNameGenerator.generate(seed));
         }

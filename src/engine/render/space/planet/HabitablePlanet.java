@@ -37,7 +37,7 @@ public class HabitablePlanet extends Planet {
     private float planetRadius = 0.5f;
     private Vector2f center = new Vector2f(0.5f, 0.5f);
     private float atmosphereBorder = 0.05f;
-    private Vector3f atmosphereColor = new Vector3f(0.4f, 0.5f, 0.6f);
+    private Vector3f atmosphereColor = new Vector3f(0.7f, 0.2f, 0.6f);
     private String name;
 
     public HabitablePlanet() {
