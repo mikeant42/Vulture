@@ -6,7 +6,7 @@ import engine.math.Matrix4f;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.render.Quad;
-import engine.render.RawShader;
+import engine.render.shader.RawShader;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;

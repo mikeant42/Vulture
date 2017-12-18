@@ -13,58 +13,46 @@ import java.util.List;
 
 public class TiledTerrain {
     private List<Sprite> tiles = new ArrayList<>();
-    private int grid = 2;
-    private float tileSize = 1f;
+    private int grid = 3;
+    private float tileSize = 0.3f;
 
-    private int numTiles = 100;
 
     //private Sprite[][] world = new Sprite[grid][grid];
 
     // Put these in the tile class
     private Texture grassTex = Texture.loadTexture("grass03.png");
+    private Texture water1Tex = Texture.loadTexture("watertile1.png");
 
     Fractal2D noise = new Fractal2D(new SimplexNoise(30), 2, 0.6f);
 
 
 
     public TiledTerrain() {
+        water1Tex.setNumberOfRows(2);
         genTiles();
     }
 
-    private Sprite createTile(float x, float y) {
-        Sprite tile = new Sprite(grassTex);
-        tile.getTransform().setScale(tileSize);
-        tile.getTransform().setPosition(new Vector2f(x, y));
+    private Sprite createTile(float type, float x, float y) {
+        Sprite tile;
+        if (type > 0.5f) {
+            tile = new Sprite(grassTex);
+            tile.getTransform().setScale(tileSize);
+            tile.getTransform().setPosition(new Vector2f(x, y));
+        } else {
+            tile = new Sprite(water1Tex);
+            tile.getTransform().setScale(tileSize);
+            tile.getTransform().setPosition(new Vector2f(x, y));
+        }
+
         return tile;
     }
 
     private void genTiles() {
-//        float rx = 0;
-//        for(int x = 0; x < grid; x++){
-//            for(int y = 0; y < grid; y++){
-//                float dx = (x - tileSize)/(float)tileSize;  // normalized coordinates -1 -> 1 from left to right
-//                float dy = (y - tileSize)/(float)tileSize;  // normalized coordinates -1 -> 1 from top to bottom
-//
-//                float val = noise.eval(x, y);
-//                Sprite tile = new Sprite(grassTex);
-//                tile.getTransform().setScale(tileSize);
-//                tile.getTransform().setPosition(new Vector2f(rx, val));
-//                tiles.add(tile);
-//                rx+=tileSize+0.1f;
-//            }
-//        }
-
-//        for (int x = 0; x < grid; x+=0.1f) {
-//            for (int y = 0; y < grid; y+=0.1f) {
-//                //float val = noise.eval(x,y);
-//                world[x][y] = createTile(x,y);
-//            }
-
-        int rx = 0;
-        for (int i = 0; i < grid; i++) {
-            for (int j = 0; j < grid; j++) {
-                tiles.add(createTile(i, j));
-                rx += 0.1f;
+        for (float i = 0; i < grid; i+=tileSize) {
+            for (float j = 0; j < grid; j+=tileSize) {
+                float val = noise.eval(i,j);
+                //System.out.println(val);
+                tiles.add(createTile(val, i, j));
             }
         }
 

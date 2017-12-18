@@ -1,10 +1,8 @@
-package engine.render;
+package engine.render.shader;
 
 
-import engine.math.Matrix4f;
-import engine.math.Vector2f;
-import engine.math.Vector3f;
-import engine.math.Vector4f;
+import engine.math.*;
+import engine.render.DisplayManager;
 import engine.util.ResourceManager;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -13,7 +11,9 @@ import org.lwjgl.opengl.GL20;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +29,8 @@ public class RawShader {
 
     private Map<String, Integer> uniformMap = new HashMap<>();
 
+    private static List<Class> validObjects = new ArrayList<>();
+
     public RawShader(String vertFile, String fragFile, String uniformInclude) {
         vertexShaderID = loadShader(vertFile, GL20.GL_VERTEX_SHADER, uniformInclude);
         fragmentShaderID = loadShader(fragFile, GL20.GL_FRAGMENT_SHADER, uniformInclude);
@@ -36,6 +38,17 @@ public class RawShader {
         programID = GL20.glCreateProgram();
         GL20.glAttachShader(programID, vertexShaderID);
         GL20.glAttachShader(programID, fragmentShaderID);
+
+        validObjects.add(float.class);
+        validObjects.add(boolean.class);
+        validObjects.add(int.class);
+        validObjects.add(Vector3f.class);
+        validObjects.add(Vector2f.class);
+        validObjects.add(double.class);
+        validObjects.add(Vector4f.class);
+        validObjects.add(Matrix4f.class);
+        validObjects.add(float[].class);
+
 
 
         //bindAttributes();
@@ -48,6 +61,14 @@ public class RawShader {
         verify();
 
         //getAllUniformLocations();
+    }
+
+    public static void addNewValidUniformClass(Class c) {
+        validObjects.add(c);
+    }
+
+    public static List<Class> getValidUniformClasses() {
+        return validObjects;
     }
 
     public RawShader(String vertFile, String fragFile) {
@@ -128,6 +149,10 @@ public class RawShader {
         mat4.store(matrixBuffer);
         matrixBuffer.flip();
         GL20.glUniformMatrix4fv(location, false, matrixBuffer);
+    }
+
+    public void setUniformObj(String name, Object obj) {
+
     }
 
     public void setUniform(String name, float val) {

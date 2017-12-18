@@ -1,24 +1,18 @@
 package engine.terrain;
 
 import engine.algo.noise.Fractal2D;
-import engine.algo.noise.Function2D;
 import engine.algo.noise.SimplexNoise;
 import engine.base.CoreEngine;
 import engine.base.Node;
 import engine.math.Matrix4f;
-import engine.math.Vector2f;
-import engine.math.Vector3f;
 import engine.render.Quad;
-import engine.render.RawShader;
+import engine.render.shader.RawShader;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by anarchist on 1/3/17.

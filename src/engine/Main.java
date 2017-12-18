@@ -19,6 +19,7 @@ import engine.render.space.planet.Planet;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 import engine.terrain.Terrain;
+import engine.terrain.TerrainScene;
 import engine.terrain.TiledTerrain;
 import engine.util.MathUtil;
 import org.lwjgl.glfw.GLFW;
@@ -66,7 +67,7 @@ public class Main {
         //String p1 = planetGen.getPlanet().getName();
         String planetName = "helloworld";
 
-        PlayerScene terrainScene = new PlayerScene(seed);
+        TerrainScene terrainScene = new TerrainScene(seed);
         Sky sky = new Sky();
         sky.getTransform().setScale(5f);
         sky.getTransform().setPosition(new Vector2f(0,0));
@@ -81,12 +82,12 @@ public class Main {
 
         GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terrain);
 
-        //terrainScene.setPhysicsEngine(physicsEngine);
-        //CoreEngine.setScene(terrainScene);
+        terrainScene.setPhysicsEngine(physicsEngine);
+        CoreEngine.setScene(terrainScene);
 
 
-        CoreEngine.setScene(spaceScene);
-        spaceScene.setPhysicsEngine(physicsEngine);
+        //CoreEngine.setScene(spaceScene);
+        //spaceScene.setPhysicsEngine(physicsEngine);
 
 
         while (!DisplayManager.getShouldWindowClose()) {
@@ -94,17 +95,6 @@ public class Main {
             CoreEngine.update();
             TextManager.render();
 
-//            if (spaceScene.isActive()) {
-//                if (!planetGen.getPlanet().isHovering(player.getTransform().getPosition())) {
-//                    planetName = "";
-//                } else {
-//                    planetName = p1;
-//                    if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_L)) {
-//                        terrainScene.setPhysicsEngine(physicsEngine);
-//                        CoreEngine.setScene(terrainScene);
-//                    }
-//                }
-//            }
 
             if (spaceScene.isActive()) {
                 Planet mp = spaceScene.getPlanetHovering(player.getTransform().getPosition());

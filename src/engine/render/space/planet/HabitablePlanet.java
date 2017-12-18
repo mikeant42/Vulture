@@ -6,7 +6,7 @@ import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.math.Vector4f;
 import engine.render.Quad;
-import engine.render.RawShader;
+import engine.render.shader.RawShader;
 import engine.algo.noise.*;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;

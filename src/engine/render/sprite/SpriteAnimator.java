@@ -8,17 +8,11 @@ import engine.render.texture.Texture;
  * Created by anarchist on 8/31/16.
  */
 public class SpriteAnimator {
-    private Vector2f frame1;
-    private Vector2f frame2;
     private float blendFactor = 0.03f;
 
     private Texture texture;
 
     private int currentTextureIndex = 0;
-    private int nextTextureIndex = currentTextureIndex;
-
-    private int numFrames;
-    private int animation;
 
     private float elapsedTime = 0;
     private float currentTime = 0;
@@ -28,15 +22,17 @@ public class SpriteAnimator {
     public SpriteAnimator(Texture texture) {
         this.texture = texture;
 
-        frame1 = new Vector2f();
-        frame2 = new Vector2f();
-
-        numFrames = texture.getNumberOfRows() * texture.getNumberOfRows();
-        animation = texture.getNumberOfRows();
-
 
         lastTime = (float)getTime();
-        fps = 1.0f / fps;
+        fps = 1.0f / 5;
+    }
+
+    public float getFps() {
+        return fps;
+    }
+
+    public void setFps(float fps) {
+        this.fps = 1.0f / fps;
     }
 
     public static double getTime() {
@@ -72,6 +68,26 @@ public class SpriteAnimator {
 //        return new Vector2f(getTextureXOffset(nextTextureIndex), getTextureYOffset(nextTextureIndex));
 //    }
 
+    private int loop(int index, int start, int end) {
+        int returnIndex = index;
+
+        currentTime = (float)getTime();
+        elapsedTime += currentTime - lastTime;
+
+        if (elapsedTime >= fps) {
+            elapsedTime = 0;
+            returnIndex++;
+            if (returnIndex >= end) {
+                returnIndex = start;
+            }
+        }
+
+        lastTime = currentTime;
+
+        return returnIndex;
+    }
+
+
     public int loopFrames(int start, int end) {
 //        int frame = start;
 //        for (int i = start; i < end; i++) {
@@ -83,11 +99,16 @@ public class SpriteAnimator {
 //        }
 //        currentTextureIndex = frame;
 
-        currentTextureIndex++;
-        if (currentTextureIndex >= end) {
+        if (currentTextureIndex <= end && currentTextureIndex >= start) {
+            currentTextureIndex = loop(currentTextureIndex, start, end);
+        } else {
             currentTextureIndex = start;
+            //currentTextureIndex = loop(currentTextureIndex, start, end);
         }
+
         return currentTextureIndex;
+
+
     }
 
     public void setCurrentIndex(int index) {

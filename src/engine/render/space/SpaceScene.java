@@ -23,8 +23,12 @@ public class SpaceScene extends PlayerScene {
     public SpaceScene(Seed seed) {
         super(seed);
         planets = new ArrayList<>();
-
         this.seed = seed;
+
+
+    }
+
+    public void create() {
         generateSystem();
 
         Space thing = new Space();
@@ -33,7 +37,6 @@ public class SpaceScene extends PlayerScene {
         this.addEntity(thing);
 
         addPlanets();
-
     }
 
     private void generateSystem() {

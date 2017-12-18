@@ -2,19 +2,18 @@ package engine.render.sprite;
 
 import engine.base.CoreEngine;
 import engine.base.Node;
-import engine.input.KeyboardHandler;
-import engine.input.MouseHandler;
 import engine.math.Matrix4f;
-import engine.math.Vector2f;
 import engine.render.Quad;
-import engine.render.RawShader;
+import engine.render.shader.RawShader;
+import engine.render.shader.Uniform;
 import engine.render.texture.Texture;
 import engine.util.MathUtil;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+
+import java.util.*;
 
 /**
  * Created by anarchist on 8/28/16.
@@ -26,6 +25,8 @@ public class Sprite extends Node {
     private Texture texture;
 
     private SpriteAnimator spriteAnimator;
+
+    private List<Uniform> uniforms = new ArrayList<>();
 
     public Sprite(Texture texture) {
         this(texture, new RawShader("main.vert", "main.frag"));
@@ -42,8 +43,12 @@ public class Sprite extends Node {
         spriteAnimator = new SpriteAnimator(texture);
     }
 
-    protected SpriteAnimator getSpriteAnimator() {
+    public SpriteAnimator getSpriteAnimator() {
         return this.spriteAnimator;
+    }
+
+    private void addUniform(String name, Object value) {
+        uniforms.put(name, value);
     }
 
 
@@ -63,6 +68,10 @@ public class Sprite extends Node {
         shader.setUniform("transformationMatrix", trans);
         shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
+
+        for (int i = 0; i < uniforms.size(); i++) {
+
+        }
 
         //
         shader.setUniform("numberOfRows", texture.getNumberOfRows());

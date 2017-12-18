@@ -2,7 +2,7 @@ package engine.render.gui.font;
 
 import engine.math.Vector2f;
 import engine.math.Vector3f;
-import engine.render.RawShader;
+import engine.render.shader.RawShader;
 
 
 /**

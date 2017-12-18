@@ -15,7 +15,7 @@ public class Player extends Sprite {
 
 
     private float speed;
-    private float sensitivity = 1.4f;
+    private float sensitivity = 1.2f;
     private AABB aabb;
     private int currentIndex = 1;
 
@@ -49,10 +49,6 @@ public class Player extends Sprite {
             getSpriteAnimator().loopFrames(1,4);
         }
 
-        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
-            currentIndex = getSpriteAnimator().loopFrames(12,16);
-            //getSpriteAnimator().calcAnimation();
-        }
 
     }
 }
