@@ -3,7 +3,6 @@
 in vec2 position;
 
 out vec2 pass_texCoords;
-out vec2 texCoords2;
 out float blendFactor;
 
 uniform float numberOfRows;

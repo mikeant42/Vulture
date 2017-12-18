@@ -15,6 +15,7 @@ import engine.render.gui.font.GUIText;
 import engine.render.gui.font.TextManager;
 import engine.render.space.Space;
 import engine.render.space.SpaceScene;
+import engine.render.space.planet.Planet;
 import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
 import engine.terrain.Terrain;
@@ -104,6 +105,17 @@ public class Main {
 //                    }
 //                }
 //            }
+
+            if (spaceScene.isActive()) {
+                Planet mp = spaceScene.getPlanetHovering(player.getTransform().getPosition());
+                if (mp != null) {
+                    planetName = mp.getName();
+                    if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_L)) {
+                        CoreEngine.setScene(terrainScene);
+                        terrainScene.setPhysicsEngine(physicsEngine);
+                    }
+                }
+            }
 
             if (terrainScene.isActive()) {
                 if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_Q)) {

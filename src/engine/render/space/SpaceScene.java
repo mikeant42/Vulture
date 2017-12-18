@@ -47,13 +47,27 @@ public class SpaceScene extends PlayerScene {
             float x = noise.eval(i, randomBounds) * 10;
             float y = noise.eval(x, i) * 10;
 
+            Vector2f pos = new Vector2f(x,y);
+
             System.out.println("X: " + x + " Y: " + y);
-            PlanetGenerator generator = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT, seed);
+            PlanetGenerator generator = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT, PlanetGenerator.generatePlanetSeed(seed, pos));
             Planet planet = generator.getPlanet();
-            planet.getTransform().setPosition(new Vector2f(x, y));
+            planet.getTransform().setPosition(pos);
             planets.add(planet);
         }
 
+    }
+
+    public Planet getPlanetHovering(Vector2f pos) {
+        Planet returnPlanet = null;
+        for (Planet planet : planets) {
+            if (planet.isHovering(pos)) {
+                returnPlanet = planet;
+            }
+
+        }
+
+        return returnPlanet;
     }
 
         private void addPlanets() {

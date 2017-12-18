@@ -5,7 +5,9 @@ import engine.algo.noise.Fractal2D;
 import engine.algo.noise.Function2D;
 import engine.algo.noise.SimplexNoise;
 import engine.base.Seed;
+import engine.math.Vector2f;
 import engine.math.Vector3f;
+import engine.util.MathUtil;
 
 /**
  * Created by anarchist on 1/18/17.
@@ -36,6 +38,7 @@ public class PlanetGenerator {
             planet.generate(colorMap, function);
             planet.getTransform().setScale(0.7f);
             planet.setName(PlanetNameGenerator.generate(seed));
+
         } else {
             planet = new HabitablePlanet();
 
@@ -54,4 +57,18 @@ public class PlanetGenerator {
     public Planet getPlanet() {
         return planet;
     }
+
+
+    public static Seed generatePlanetSeed(Seed galaxySeed, Vector2f planetPosition) {
+        Seed seed = new Seed();
+
+        int a = MathUtil.psrandomInt(galaxySeed);
+        int b = (int)(MathUtil.psrandomFloat(planetPosition.x, planetPosition.y, galaxySeed));
+        int c = (int)(a * b / (planetPosition.x / 2));
+        seed.seed = c;
+
+        return seed;
+    }
+
+
 }

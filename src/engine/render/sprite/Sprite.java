@@ -42,6 +42,10 @@ public class Sprite extends Node {
         spriteAnimator = new SpriteAnimator(texture);
     }
 
+    protected SpriteAnimator getSpriteAnimator() {
+        return this.spriteAnimator;
+    }
+
 
     @Override
     public void render() {
@@ -63,7 +67,7 @@ public class Sprite extends Node {
         //
         shader.setUniform("numberOfRows", texture.getNumberOfRows());
         shader.setUniform("offset", spriteAnimator.getCurrentFrame());
-        shader.setUniform("offset2", spriteAnimator.getNextFrame());
+        //shader.setUniform("offset2", spriteAnimator.getNextFrame());
         shader.setUniform("blend", spriteAnimator.getBlendFactor());
 
 
@@ -76,11 +80,5 @@ public class Sprite extends Node {
         shader.stop();
     }
 
-    @Override
-    public void input() {
-        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
-            spriteAnimator.calcAnimation();
 
-        }
-    }
 }

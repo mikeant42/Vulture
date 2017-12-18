@@ -17,6 +17,7 @@ public class Player extends Sprite {
     private float speed;
     private float sensitivity = 1.4f;
     private AABB aabb;
+    private int currentIndex = 1;
 
     public Player(Texture texture) {
         super(texture);
@@ -30,18 +31,27 @@ public class Player extends Sprite {
     public void input() {
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_D)) {
             getTransform().getPosition().x += speed;
+            getSpriteAnimator().loopFrames(9,12);
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_A)) {
             getTransform().getPosition().x -= speed;
+            getSpriteAnimator().loopFrames(5,8);
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_W)) {
             getTransform().getPosition().y += speed;
+            getSpriteAnimator().loopFrames(13,16);
         }
 
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_S)) {
             getTransform().getPosition().y -= speed;
+            getSpriteAnimator().loopFrames(1,4);
+        }
+
+        if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
+            currentIndex = getSpriteAnimator().loopFrames(12,16);
+            //getSpriteAnimator().calcAnimation();
         }
 
     }
