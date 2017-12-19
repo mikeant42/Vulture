@@ -133,8 +133,8 @@ public class Terrain extends Node {
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         texture.bind();
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
-        shader.setUniform("transformationMatrix", trans);
-        shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+        shader.setUniformMat4("transformationMatrix", trans);
+        shader.setUniformMat4("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());

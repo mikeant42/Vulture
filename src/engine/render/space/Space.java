@@ -70,18 +70,18 @@ public class Space extends Node {
         texture.bind();
 
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
-        shader.setUniform("transformationMatrix", trans);
-        shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+        shader.setUniformMat4("transformationMatrix", trans);
+        shader.setUniformMat4("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
         shader.loadDefaults();
 
-        shader.setUniform("resolution", new Vector2f(100, 100));
+        shader.setUniformVec2("resolution", new Vector2f(100, 100));
 
-        shader.setUniform("starDensity", 3.5f);
-        shader.setUniform("starRadius", 0.5f);
-        shader.setUniform("starColor", new Vector3f(0.796078431372549f, 0.9254901960784314f, 0.9254901960784314f));
-        shader.setUniform("spaceColor", new Vector3f(0.15f, 0.15f, 0.15f));
-        shader.setUniform("speed", 0.2f);
+        shader.setUniformFloat("starDensity", 3.5f);
+        shader.setUniformFloat("starRadius", 0.5f);
+        shader.setUniformVec3("starColor", new Vector3f(0.796078431372549f, 0.9254901960784314f, 0.9254901960784314f));
+        shader.setUniformVec3("spaceColor", new Vector3f(0.15f, 0.15f, 0.15f));
+        shader.setUniformFloat("speed", 0.2f);
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());

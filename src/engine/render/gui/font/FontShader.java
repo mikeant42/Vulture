@@ -24,22 +24,22 @@ public class FontShader extends RawShader {
     }
 
     protected void loadTranslation(Vector2f translation) {
-        super.setUniform("translation", translation);
+        super.setUniformVec2("translation", translation);
     }
 
     public void loadColor(Vector3f color) {
-        super.setUniform("color", color);
+        super.setUniformVec3("color", color);
     }
 
     public void loadOutlineColor(Vector3f outline) {
-        super.setUniform("outlineColor", outline);
+        super.setUniformVec3("outlineColor", outline);
     }
 
     public void loadBorderWidth(float width) {
-        super.setUniform("borderWidth", width);
+        super.setUniformFloat("borderWidth", width);
     }
 
     public void loadDropShadow(Vector2f vec) {
-        super.setUniform("offset", vec);
+        super.setUniformVec2("offset", vec);
     }
 }

@@ -10,7 +10,24 @@ public class Uniform {
             this.value = value;
         } else {
             System.err.println("ALERT!!!! Value not valid uniform");
+            this.value = 0;
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
     }
 
     private boolean isValidUniform(Object object) {

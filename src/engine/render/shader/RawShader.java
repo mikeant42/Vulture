@@ -152,10 +152,26 @@ public class RawShader {
     }
 
     public void setUniformObj(String name, Object obj) {
-
+        if (obj.getClass().equals(float.class)) {
+            setUniformFloat(name, (float)obj);
+        } else if (obj.getClass().equals(int.class)) {
+            setUniformFloat(name, (int)obj);
+        } else if (obj.getClass().equals(boolean.class)) {
+            setUniformBool(name, (boolean)obj);
+        } else if (obj.getClass().equals(Vector2f.class)) {
+            setUniformVec2(name, (Vector2f)obj);
+        } else if (obj.getClass().equals(Vector3f.class)) {
+            setUniformVec3(name, (Vector3f)obj);
+        } else if (obj.getClass().equals(Matrix4f.class)) {
+            setUniformMat4(name, (Matrix4f)obj);
+        } else if (obj.getClass().equals(Vector4f.class)) {
+            setUniformVec4(name, (Vector4f)obj);
+        } else if (obj.getClass().equals(float[].class)) {
+            setUniformFloatArr(name, (float[]) obj);
+        }
     }
 
-    public void setUniform(String name, float val) {
+    public void setUniformFloat(String name, float val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -167,7 +183,7 @@ public class RawShader {
         loadFloat(loc, val);
     }
 
-    public void setUniform(String name, Vector3f val) {
+    public void setUniformVec3(String name, Vector3f val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -178,7 +194,7 @@ public class RawShader {
         loadVector3(loc, val);
     }
 
-    public void setUniform(String name, Vector4f val) {
+    public void setUniformVec4(String name, Vector4f val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -189,7 +205,7 @@ public class RawShader {
         loadVector4(loc, val);
     }
 
-    public void setUniform(String name, boolean val) {
+    public void setUniformBool(String name, boolean val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -200,7 +216,7 @@ public class RawShader {
         loadBoolean(loc, val);
     }
 
-    public void setUniform(String name, float[] val) {
+    public void setUniformFloatArr(String name, float[] val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -211,7 +227,7 @@ public class RawShader {
         loadFloatArray(loc, val);
     }
 
-    public void setUniform(String name, Matrix4f val) {
+    public void setUniformMat4(String name, Matrix4f val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -222,7 +238,7 @@ public class RawShader {
         loadMatrix(loc, val);
     }
 
-    public void setUniform(String name, Vector2f val) {
+    public void setUniformVec2(String name, Vector2f val) {
         int loc;
         if (inMap(name)) {
             loc = uniformMap.get(name);
@@ -245,9 +261,9 @@ public class RawShader {
     }
 
     public void loadDefaults() {
-        this.setUniform("resolution", new Vector2f(DisplayManager.getWindowWidth(), DisplayManager.getWindowHeight()));
-        this.setUniform("time", (float) DisplayManager.getTime());
-        this.setUniform("dtime", (float) DisplayManager.getFrameTimeSeconds());
+        this.setUniformVec2("resolution", new Vector2f(DisplayManager.getWindowWidth(), DisplayManager.getWindowHeight()));
+        this.setUniformFloat("time", (float) DisplayManager.getTime());
+        this.setUniformFloat("dtime", (float) DisplayManager.getFrameTimeSeconds());
     }
 
     private boolean inMap(String str) {

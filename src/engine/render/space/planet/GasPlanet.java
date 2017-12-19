@@ -148,15 +148,15 @@ public class GasPlanet extends Planet {
         texture.bind();
 
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
-        shader.setUniform("transformationMatrix", trans);
-        shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+        shader.setUniformMat4("transformationMatrix", trans);
+        shader.setUniformMat4("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
 
         this.shader.loadDefaults();
 
-        shader.setUniform("radius", planetRadius);
-        shader.setUniform("center", center);
-        shader.setUniform("atmosphereBorder", atmosphereBorder);
-        shader.setUniform("atmosphereColor", new Vector4f(atmosphereColor.x, atmosphereColor.y, atmosphereColor.z, 1));
+        shader.setUniformFloat("radius", planetRadius);
+        shader.setUniformVec2("center", center);
+        shader.setUniformFloat("atmosphereBorder", atmosphereBorder);
+        shader.setUniformVec4("atmosphereColor", new Vector4f(atmosphereColor.x, atmosphereColor.y, atmosphereColor.z, 1));
 
         shader.setTextureSlot("noiseSample", 0);
 

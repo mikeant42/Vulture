@@ -1,7 +1,6 @@
 #version 130
 
 in vec2 pass_texCoords;
-in vec2 texCoords2;
 
 in float blendFactor;
 

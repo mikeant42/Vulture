@@ -4,11 +4,13 @@ import engine.base.CoreEngine;
 import engine.base.PlayerScene;
 import engine.base.Seed;
 import engine.input.KeyboardHandler;
+import engine.math.Vector4f;
 import engine.physics.GroundPhysicsEngine;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.render.DisplayManager;
+import engine.render.Light;
 import engine.render.ground.Sky;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
@@ -78,6 +80,8 @@ public class Main {
         terrain.addToScene(terrainScene);
         terrainScene.addEntity(player);
 
+        Light light = new Light(new Vector4f(0.7f, 0.2f, 0.2f, 0.8f));
+        terrainScene.addEntity(light);
 
 
         GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terrain);

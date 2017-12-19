@@ -43,12 +43,20 @@ public class Sprite extends Node {
         spriteAnimator = new SpriteAnimator(texture);
     }
 
-    public SpriteAnimator getSpriteAnimator() {
+    /**
+     * This constructor should only be used by a class inheriting Sprite, and one that doesn't want to
+     * take in a texture
+     */
+    public Sprite() {
+        super();
+    }
+
+    protected SpriteAnimator getSpriteAnimator() {
         return this.spriteAnimator;
     }
 
-    private void addUniform(String name, Object value) {
-        uniforms.put(name, value);
+    private void addUniform(Uniform uniform) {
+        uniforms.add(uniform);
     }
 
 
@@ -65,19 +73,21 @@ public class Sprite extends Node {
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         texture.bind();
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
-        shader.setUniform("transformationMatrix", trans);
-        shader.setUniform("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+        shader.setUniformMat4("transformationMatrix", trans);
+        shader.setUniformMat4("viewMatrix", MathUtil.createViewMatrix(CoreEngine.getCamera()));
+
+        shader.loadDefaults();
 
 
-        for (int i = 0; i < uniforms.size(); i++) {
-
+        for (Uniform uniform : uniforms) {
+            shader.setUniformObj(uniform.getName(), uniform.getValue());
         }
 
         //
-        shader.setUniform("numberOfRows", texture.getNumberOfRows());
-        shader.setUniform("offset", spriteAnimator.getCurrentFrame());
+        shader.setUniformFloat("numberOfRows", texture.getNumberOfRows());
+        shader.setUniformVec2("offset", spriteAnimator.getCurrentFrame());
         //shader.setUniform("offset2", spriteAnimator.getNextFrame());
-        shader.setUniform("blend", spriteAnimator.getBlendFactor());
+        shader.setUniformFloat("blend", spriteAnimator.getBlendFactor());
 
 
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
