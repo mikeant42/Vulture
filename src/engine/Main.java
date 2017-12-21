@@ -4,8 +4,10 @@ import engine.base.CoreEngine;
 import engine.base.PlayerScene;
 import engine.base.Seed;
 import engine.input.KeyboardHandler;
+import engine.math.Vector2i;
 import engine.math.Vector4f;
 import engine.physics.GroundPhysicsEngine;
+import engine.player.ControlledPlayer;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -45,7 +47,14 @@ public class Main {
 
         Texture spriteTex = Texture.loadTexture("blackmage_m.png");
         spriteTex.setNumberOfRows(4);
-        Player player = new Player(spriteTex);
+
+        ControlledPlayer player = new ControlledPlayer(spriteTex);
+
+        player.setRunBack(new Vector2i(1,4));
+        player.setRunLeft(new Vector2i(5, 8));
+        player.setRunRight(new Vector2i(9, 12));
+        player.setRunForward(new Vector2i(13, 16));
+
         player.getTransform().setScale(0.1f);
         player.getTransform().setPosition(new Vector2f(0,1.5f));
 

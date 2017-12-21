@@ -24,7 +24,7 @@ public class Light extends Sprite {
 
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
         quad = CoreEngine.getLoader().loadToVAO(positions, 2);
-        this.shader = new RawShader("default.vert", "light/light.frag");
+        this.shader = new RawShader("light/light.vert", "light/light.frag");
 
         this.lightColor = lightColor;
         this.getTransform().setScale(0.2f);
@@ -38,7 +38,7 @@ public class Light extends Sprite {
         GL20.glEnableVertexAttribArray(0);
 
         GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
 
         Matrix4f trans = MathUtil.createTransformationMatrix(this.getTransform().getPosition(), getTransform().getRotation().x, this.getTransform().getFullScale());
@@ -52,6 +52,10 @@ public class Light extends Sprite {
         GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
 
         GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+        // Reset to normal blend function
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
         GL11.glDisable(GL11.GL_BLEND);
         GL20.glDisableVertexAttribArray(0);
         GL30.glBindVertexArray(0);

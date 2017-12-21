@@ -21,7 +21,7 @@ public class TiledTerrain {
 
     // Put these in the tile class
     private Texture grassTex = Texture.loadTexture("grass03.png");
-    private Texture water1Tex = Texture.loadTexture("watertile1.png");
+    private Texture water1Tex = Texture.loadTexture("StoneWall.png");
 
     Fractal2D noise = new Fractal2D(new SimplexNoise(30), 2, 0.6f);
 
@@ -34,7 +34,7 @@ public class TiledTerrain {
 
     private Sprite createTile(float type, float x, float y) {
         Sprite tile;
-        if (type > 0.5f) {
+        if (type < 0.55f) {
             tile = new Sprite(grassTex);
             tile.getTransform().setScale(tileSize);
             tile.getTransform().setPosition(new Vector2f(x, y));
