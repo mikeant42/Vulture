@@ -39,13 +39,14 @@ public class Player extends Sprite {
         runBack = new Vector2i();
         runLeft = new Vector2i();
         runRight = new Vector2i();
+
+        setIsSolid(true);
     }
 
     @Override
     public void update() {
         speed = sensitivity * (float)DisplayManager.getFrameTimeSeconds();
-
-        switch (state){
+        switch (state) {
             case 1 :
                 getTransform().getPosition().y += speed;
                 getSpriteAnimator().loopFrames(runForward.x,runForward.y);

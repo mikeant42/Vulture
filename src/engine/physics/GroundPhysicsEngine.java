@@ -1,9 +1,13 @@
 package engine.physics;
 
+import engine.base.Node;
 import engine.math.Vector2f;
 import engine.player.Player;
+import engine.render.sprite.Sprite;
 import engine.terrain.Terrain;
 import engine.terrain.TiledTerrain;
+
+import java.util.List;
 
 public class GroundPhysicsEngine implements PhysicsEngine {
     private Player player;
@@ -14,16 +18,18 @@ public class GroundPhysicsEngine implements PhysicsEngine {
         this.terrain = terrain;
     }
 
-    public void integrate() {
-        //System.out.println("Player pos: " + player.getTransform().getPosition().y);
-        //System.out.println("Terrain h" + terrain.getHeight((int)player.getTransform().getPosition().x));
-
-
-//        if (player.getTransform().getPosition().y > terrain.getHeight((int)player.getTransform().getPosition().x)) {
-//            System.out.println("above");
-//        }
-
-        //player.getTransform().setPosition(new Vector2f(player.getTransform().getPosition().x, terrain.getHeight(player.getTransform().getPosition().x)));
+    @Override
+    public void integrate(List<Node> nodes) {
+        player.updateBoundingBox();
+        for (Node node : nodes) {
+            if (node.isSolid()) {
+                node.updateBoundingBox();
+                // Needs to make sure that the player doesn't collide with itself
+                if (player.getBoundingBox().intersects(node.getBoundingBox()) && !player.getClass().equals(node.getClass())) {
+                    System.out.println("Player colliding with " + node.getNodeName());
+                }
+            }
+        }
     }
 
 

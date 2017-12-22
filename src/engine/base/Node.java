@@ -1,5 +1,7 @@
 package engine.base;
 
+import engine.physics.AABB;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,27 @@ public class Node {
     private List<Node> children = new ArrayList<>();
     private Node parent;
 
+
+    private AABB aabb;
+    private boolean isSolid = false;
+
+
     public Node(String name) {
         this.name = name;
         this.transformation = new Transform();
+
+        aabb = new AABB();
+
+        updateBoundingBox();
     }
 
     public Node() {
         this("");
+    }
+
+
+    public void setNodeName(String name) {
+        this.name = name;
     }
 
     public void addChild(Node node) {
@@ -41,7 +57,7 @@ public class Node {
         return transformation;
     }
 
-    public String getName() {
+    public String getNodeName() {
         return name;
     }
 
@@ -65,6 +81,26 @@ public class Node {
         }
 
         return allChildren;
+    }
+
+
+    public boolean isSolid() {
+        return isSolid;
+    }
+
+    public void setIsSolid(boolean solid) {
+        isSolid = solid;
+    }
+
+    public AABB getBoundingBox() {
+        return aabb;
+    }
+
+    public void updateBoundingBox() {
+        this.aabb.getMin().x = this.getTransform().getPosition().x;
+        this.aabb.getMin().y = this.getTransform().getPosition().y;
+        this.aabb.getMax().x = this.getTransform().getPosition().x + this.getTransform().getFullScale().x;
+        this.aabb.getMax().y = this.getTransform().getPosition().y + this.getTransform().getFullScale().y;
     }
 
     public boolean hasChildren() {

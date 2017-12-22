@@ -1,5 +1,6 @@
 package engine.player;
 
+import engine.render.DisplayManager;
 import engine.render.texture.Texture;
 
 import java.util.Random;
@@ -10,16 +11,21 @@ import java.util.Random;
 
 public class RoamerPlayer extends Player {
 
+    // These are all for timing when he chooses to make a decision-
     private float elapsedTime = 0;
     private float currentTime = 0;
     private float lastTime;
-    private float fps;
+    private float timeToDecide;
+    private float directionTime;
 
     public RoamerPlayer(Texture texture) {
         super(texture);
 
         lastTime = (float)getTime();
-        fps = 1.0f / 5;
+        timeToDecide = 3;
+        directionTime = 1;
+
+        setSensitivity(0.5f);
     }
 
     public static double getTime() {
@@ -48,10 +54,14 @@ public class RoamerPlayer extends Player {
         currentTime = (float)getTime();
         elapsedTime += currentTime - lastTime;
 
-        if (elapsedTime >= fps) {
-            elapsedTime = 0;
+        if (elapsedTime >= timeToDecide) {
             setState(chooseRandomDirection());
+            elapsedTime = 0;
+        } else if (elapsedTime >= directionTime) {
+            setState(Player.STATE_STANDING);
         }
+
+        lastTime = currentTime;
 
     }
 }

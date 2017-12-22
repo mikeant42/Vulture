@@ -43,15 +43,20 @@ public class PlayerScene {
     }
 
     public void update(Camera camera) {
-        physicsEngine.integrate();
+        List<Node> physicsNodes = new ArrayList<>();
 
         for (Node node : nodes) {
+            if (node.isSolid()) {
+                physicsNodes.add(node);
+            }
             camera.update();
 
             node.input();
             node.update();
             node.render();
         }
+
+        physicsEngine.integrate(physicsNodes);
     }
 
     public Seed getSeed() {

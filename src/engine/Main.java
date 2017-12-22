@@ -90,14 +90,24 @@ public class Main {
         terrain.addToScene(terrainScene);
         terrainScene.addEntity(player);
 
-        Texture bunnyTex = Texture.loadTexture("bunnies.png");
-        bunnyTex.setNumberOfRows(3);
+        Texture bunnyTex = Texture.loadTexture("orangehair.png");
+        bunnyTex.setNumberOfRows(4);
         RoamerPlayer bunny  = new RoamerPlayer(bunnyTex);
-        bunny.getTransform().setScale(0.25f);
-        bunny.setRunForward(new Vector2i(1,3));
-        bunny.setRunLeft(new Vector2i(4,6));
-        bunny.setRunRight(new Vector2i(7,9));
-        bunny.setRunBack(new Vector2i(10,12));
+        bunny.setNodeName("bunny");
+
+        bunny.setRunBack(new Vector2i(1,4));
+        bunny.setRunLeft(new Vector2i(5, 8));
+        bunny.setRunRight(new Vector2i(9, 12));
+        bunny.setRunForward(new Vector2i(13, 16));
+
+        bunny.getTransform().setScale(0.1f);
+        bunny.getTransform().setPosition(new Vector2f(2,2));
+//        bunny.setRunForward(new Vector2i(1,3));
+//        bunny.setRunLeft(new Vector2i(4,6));
+//        bunny.setRunRight(new Vector2i(7,9));
+//        bunny.setRunBack(new Vector2i(10,12));
+
+
 
         terrainScene.addEntity(bunny);
 

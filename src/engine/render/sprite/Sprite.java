@@ -3,6 +3,7 @@ package engine.render.sprite;
 import engine.base.CoreEngine;
 import engine.base.Node;
 import engine.math.Matrix4f;
+import engine.physics.AABB;
 import engine.render.Quad;
 import engine.render.shader.RawShader;
 import engine.render.shader.Uniform;
@@ -98,6 +99,5 @@ public class Sprite extends Node {
         GL30.glBindVertexArray(0);
         shader.stop();
     }
-
 
 }
