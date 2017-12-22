@@ -14,7 +14,7 @@ import java.util.List;
 public class TiledTerrain {
     private List<Sprite> tiles = new ArrayList<>();
     private int grid = 3;
-    private float tileSize = 0.3f;
+    private float tileSize = 0.18f;
 
 
     //private Sprite[][] world = new Sprite[grid][grid];

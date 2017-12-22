@@ -8,6 +8,7 @@ public class ControlledPlayer extends Player {
 
     public ControlledPlayer(Texture texture) {
         super(texture);
+
     }
 
     @Override

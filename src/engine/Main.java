@@ -11,6 +11,7 @@ import engine.player.ControlledPlayer;
 import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
+import engine.player.RoamerPlayer;
 import engine.render.DisplayManager;
 import engine.render.Light;
 import engine.render.ground.Sky;
@@ -88,6 +89,17 @@ public class Main {
         TiledTerrain terrain = new TiledTerrain();
         terrain.addToScene(terrainScene);
         terrainScene.addEntity(player);
+
+        Texture bunnyTex = Texture.loadTexture("bunnies.png");
+        bunnyTex.setNumberOfRows(3);
+        RoamerPlayer bunny  = new RoamerPlayer(bunnyTex);
+        bunny.getTransform().setScale(0.25f);
+        bunny.setRunForward(new Vector2i(1,3));
+        bunny.setRunLeft(new Vector2i(4,6));
+        bunny.setRunRight(new Vector2i(7,9));
+        bunny.setRunBack(new Vector2i(10,12));
+
+        terrainScene.addEntity(bunny);
 
         Light light = new Light(new Vector4f(0.7f, 0.2f, 0.2f, 0.8f));
         terrainScene.addEntity(light);

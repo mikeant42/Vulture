@@ -15,11 +15,9 @@ import org.lwjgl.glfw.GLFW;
  */
 public class Player extends Sprite {
 
-
     private float speed;
-    private float sensitivity = 1.2f;
-    private AABB aabb;
-    private int currentIndex = 1;
+    private float sensitivity = 0.8f;
+
 
     public static int STATE_STANDING           = 0;
     public static int STATE_RUNNING_FORWARD    = 1;
@@ -104,4 +102,11 @@ public class Player extends Sprite {
         this.runBack = runBack;
     }
 
+    public float getSensitivity() {
+        return sensitivity;
+    }
+
+    public void setSensitivity(float sensitivity) {
+        this.sensitivity = sensitivity;
+    }
 }
