@@ -31,6 +31,10 @@ public class CoreEngine {
         return loader;
     }
 
+    public static PlayerScene getScene() {
+        return scene;
+    }
+
     public static void setScene(PlayerScene scenee) {
         if (scene != null) {
             scene.setActive(false);

@@ -23,7 +23,7 @@ public class RoamerPlayer extends Player {
 
         lastTime = (float)getTime();
         timeToDecide = 3;
-        directionTime = 1;
+        directionTime = 1.5f;
 
         setSensitivity(0.5f);
     }

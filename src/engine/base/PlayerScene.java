@@ -42,6 +42,12 @@ public class PlayerScene {
         nodes = rootNode.getAllChildren();
     }
 
+    public void removeEntity(Node node) {
+        rootNode.remove(node);
+
+        nodes = rootNode.getAllChildren();
+    }
+
     public void update(Camera camera) {
         List<Node> physicsNodes = new ArrayList<>();
 

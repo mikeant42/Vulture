@@ -2,6 +2,7 @@ package engine.render;
 
 import engine.base.Node;
 import engine.input.KeyboardHandler;
+import engine.math.Matrix4f;
 import engine.math.Vector;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
@@ -20,7 +21,7 @@ public class Camera {
     private Node player;
 
     public Camera() {
-        position = new Vector2f(0,0);
+        position = new Vector2f(0, 0);
     }
 
     public Vector2f getPosition() {
@@ -51,5 +52,8 @@ public class Camera {
         }
     }
 
-
+    public Vector2f screenToWorld(Vector2f mouseCoords) {
+        return new Vector2f((position.x + (mouseCoords.x/DisplayManager.getWindowWidth())) - position.x
+                , (position.y + (mouseCoords.y/DisplayManager.getWindowHeight())) - position.y);
+    }
 }

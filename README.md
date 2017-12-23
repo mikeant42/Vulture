@@ -11,7 +11,8 @@ Reminder: You must use setTextureSlot(...) when using multiple textures
 
 ## General Game Mechanics
 - There should be some sort of direction/compass/minimap system in space. The scenes are fairly big.
-
+- Need to build quadtree for collision detection
+- Input needs to be more organized, for the `input` Node function there should be some sort of InputManager passed in as a param
 
 ## Planet Generation
 Planet generation is done on both the CPU and GPU. First, the noise needed is created and distorted with java on the CPU.

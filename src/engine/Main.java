@@ -1,34 +1,30 @@
 package engine;
 
 import engine.base.CoreEngine;
-import engine.base.PlayerScene;
 import engine.base.Seed;
+import engine.input.CursorHandler;
 import engine.input.KeyboardHandler;
+import engine.input.MouseHandler;
 import engine.math.Vector2i;
 import engine.math.Vector4f;
 import engine.physics.GroundPhysicsEngine;
 import engine.player.ControlledPlayer;
-import engine.player.Player;
 import engine.math.Vector2f;
 import engine.math.Vector3f;
 import engine.player.RoamerPlayer;
 import engine.render.DisplayManager;
 import engine.render.Light;
-import engine.render.ground.Sky;
 import engine.render.gui.font.FontType;
 import engine.render.gui.font.GUIText;
 import engine.render.gui.font.TextManager;
-import engine.render.space.Space;
 import engine.render.space.SpaceScene;
 import engine.render.space.planet.Planet;
-import engine.render.space.planet.PlanetGenerator;
 import engine.render.texture.Texture;
-import engine.terrain.Terrain;
 import engine.terrain.TerrainScene;
 import engine.terrain.TiledTerrain;
-import engine.util.MathUtil;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWKeyCallback;
+
+import java.awt.*;
 import java.io.File;
 
 /**
@@ -80,10 +76,6 @@ public class Main {
         String planetName = "helloworld";
 
         TerrainScene terrainScene = new TerrainScene(seed);
-        Sky sky = new Sky();
-        sky.getTransform().setScale(5f);
-        sky.getTransform().setPosition(new Vector2f(0,0));
-        terrainScene.addEntity(sky);
 
 
         TiledTerrain terrain = new TiledTerrain();
@@ -129,7 +121,6 @@ public class Main {
 
             CoreEngine.update();
             TextManager.render();
-
 
             if (spaceScene.isActive()) {
                 Planet mp = spaceScene.getPlanetHovering(player.getTransform().getPosition());

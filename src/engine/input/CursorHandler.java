@@ -3,6 +3,8 @@ package engine.input;
 /**
  * Created by anarchist on 6/15/16.
  */
+import engine.math.Vector2f;
+import engine.render.DisplayManager;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 
@@ -50,4 +52,11 @@ public class CursorHandler extends GLFWCursorPosCallback {
 //        float normalizeY =  1.0f - 2.0f  * getMouseY() / DisplayManager.getWindowHeight();
 //        return new Vector2f(normalizeX, normalizeY);
 //    }
+
+    public static  Vector2f getNormalisedDeviceCoordinates() {
+        float x = (2.0f * getMouseX()) / DisplayManager.getWindowWidth() - 1f;
+        float y = (2.0f * getMouseY()) / DisplayManager.getWindowHeight() - 1f;
+        return new Vector2f(x, y);
+    }
+
 }

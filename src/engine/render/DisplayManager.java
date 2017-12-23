@@ -80,6 +80,7 @@ public class DisplayManager {
                 (vidmode.height() - WINDOW_HEIGHT) / 2
         );
 
+
 //        int[] widthMM = new int[5];
 //        int[] heightMM = new int[5];
 //        GLFW.glfwGetMonitorPhysicalSize(GLFW.glfwGetPrimaryMonitor(), widthMM, heightMM);

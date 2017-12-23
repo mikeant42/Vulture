@@ -88,6 +88,14 @@ public class Node {
         return isSolid;
     }
 
+    public void remove(Node node) {
+        children.remove(node);
+    }
+
+    /**
+     * The act of setting this to true will register this Node with the physics engine
+     * @param solid
+     */
     public void setIsSolid(boolean solid) {
         isSolid = solid;
     }
@@ -119,4 +127,10 @@ public class Node {
     public void render() {}
     public void input() {}
     public void update() {}
+
+    /**
+     * This class is triggered whenever two Nodes collide,
+     * @param node, the other node in the collision
+     */
+    public void isColliding(Node node) {}
 }

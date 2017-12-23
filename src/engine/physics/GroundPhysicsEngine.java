@@ -21,12 +21,15 @@ public class GroundPhysicsEngine implements PhysicsEngine {
     @Override
     public void integrate(List<Node> nodes) {
         player.updateBoundingBox();
+        /**
+         * TODO i need to build a quadtree or some spatial system to reduce the amount of nodes being checked
+         */
         for (Node node : nodes) {
             if (node.isSolid()) {
                 node.updateBoundingBox();
                 // Needs to make sure that the player doesn't collide with itself
                 if (player.getBoundingBox().intersects(node.getBoundingBox()) && !player.getClass().equals(node.getClass())) {
-                    System.out.println("Player colliding with " + node.getNodeName());
+                    player.isColliding(node);
                 }
             }
         }
