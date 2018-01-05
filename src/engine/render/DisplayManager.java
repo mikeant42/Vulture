@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.system.FunctionProvider;
 import org.lwjgl.system.MemoryUtil;
 
+import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.WGLARBCreateContext.nwglCreateContextAttribsARB;
@@ -110,6 +111,16 @@ public class DisplayManager {
 
         GL11.glViewport(0, 0, glw[0], glh[0]);
 
+    }
+
+    public static Vector2f getCoords() {
+        DoubleBuffer xBuffer = BufferUtils.createDoubleBuffer(1);
+        DoubleBuffer yBuffer = BufferUtils.createDoubleBuffer(1);
+        GLFW.glfwGetCursorPos(window, xBuffer, yBuffer);
+        double x = xBuffer.get(0);
+        double y = yBuffer.get(0);
+
+        return new Vector2f((float)x, (float)y);
     }
 
     public static double getTime() {

@@ -36,10 +36,12 @@ public class PlanetGenerator {
             this.colorMap = "colormap/IDL_Prism.frag";
 
             planet.generate(colorMap, function);
-            planet.getTransform().setScale(0.7f);
+            planet.getTransform().setScale(1.75f);
             planet.setName(PlanetNameGenerator.generate(seed));
+            planet.setAtmosphereColor(planet.genRandomAtmoColor(seed));
 
         } else {
+            // Do this another time
             planet = new HabitablePlanet();
 
             this.function = new Fractal2D(new SimplexNoise(this.seed.seed), 6, 0.85f);
@@ -47,7 +49,7 @@ public class PlanetGenerator {
             //this.colorMap = "colormap/MATLAB_autumn.frag";
 
             planet.generate(colorMap, function);
-            planet.getTransform().setScale(0.7f);
+            planet.getTransform().setScale(1.75f);
             planet.setName(PlanetNameGenerator.generate(seed));
         }
 

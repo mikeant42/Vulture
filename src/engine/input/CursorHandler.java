@@ -13,8 +13,8 @@ public class CursorHandler extends GLFWCursorPosCallback {
     private static float mouseX;
     private static float mouseY;
 
-    private static int mouseDX;
-    private static int mouseDY;
+    private static float mouseDX;
+    private static float mouseDY;
 
     @Override
     public void invoke(long window, double xpos, double ypos) {
@@ -23,8 +23,8 @@ public class CursorHandler extends GLFWCursorPosCallback {
         // of our mouse whenever it is in our window
         ///System.out.println("X: " + xpos + " Y: " + ypos);
 
-        mouseDX = (int)(xpos - mouseX);
-        mouseDY = (int)(ypos - mouseY);
+        mouseDX = (float)(xpos - mouseX);
+        mouseDY = (float)(ypos - mouseY);
 
         mouseX = (float)xpos;
         mouseY = (float)ypos;
@@ -39,11 +39,11 @@ public class CursorHandler extends GLFWCursorPosCallback {
         return mouseY;
     }
 
-    public static int getMouseDX() {
+    public static float getMouseDX() {
         return mouseDX;
     }
 
-    public static int getMouseDY() {
+    public static float getMouseDY() {
         return mouseDY;
     }
 //
@@ -56,7 +56,7 @@ public class CursorHandler extends GLFWCursorPosCallback {
     public static  Vector2f getNormalisedDeviceCoordinates() {
         float x = (2.0f * getMouseX()) / DisplayManager.getWindowWidth() - 1f;
         float y = (2.0f * getMouseY()) / DisplayManager.getWindowHeight() - 1f;
-        return new Vector2f(x, y);
+        return new Vector2f(x, y); // If doesn't work try changing to -y
     }
 
 }

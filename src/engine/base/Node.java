@@ -132,5 +132,5 @@ public class Node {
      * This class is triggered whenever two Nodes collide,
      * @param node, the other node in the collision
      */
-    public void isColliding(Node node) {}
+    public void handleCollision(Node node) {}
 }

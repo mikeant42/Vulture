@@ -177,7 +177,7 @@ public class HabitablePlanet extends Planet {
 
     @Override
     public void update() {
-        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.01f, this.getTransform().getRotation().y));
+        this.getTransform().setRotation(new Vector2f(this.getTransform().getRotation().x + 0.008f, this.getTransform().getRotation().y));
     }
 
 }

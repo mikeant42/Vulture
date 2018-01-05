@@ -38,3 +38,6 @@ Both the outside planet seed generator and the ground seed gen need to gives sim
 
 The unique planet seed should be generated like `genPlanetSeed(Seed universeSeed, Seed galaxySeed, Vec2 position)`
 
+## Code TODOs
+- I need to use a better math library, such as JOML instead of the one I scraped together
+- Fix that rotation is only around the x axis

@@ -60,6 +60,9 @@ public class Sprite extends Node {
         uniforms.add(uniform);
     }
 
+    public Texture getTexture() {
+        return texture;
+    }
 
     @Override
     public void render() {

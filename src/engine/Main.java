@@ -56,6 +56,7 @@ public class Main {
         player.getTransform().setPosition(new Vector2f(0,1.5f));
 
         SpaceScene spaceScene = new SpaceScene(seed);
+        //spaceScene.create();
 
 
 

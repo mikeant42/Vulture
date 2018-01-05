@@ -53,6 +53,7 @@ public class Projectile extends Sprite {
         if (elapsedTime >= duration) {
             // This code is really bad, needs to be improved. Just asking for bugs
             getParent().remove(this);
+            // The scene that the projectile is spawned in must be the active scene
             CoreEngine.getScene().removeEntity(this);
             elapsedTime = 0;
         } else {
