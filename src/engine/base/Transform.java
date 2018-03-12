@@ -1,7 +1,9 @@
 package engine.base;
 
 
+import engine.math.Matrix4f;
 import engine.math.Vector2f;
+import engine.math.Vector3f;
 
 /**
  * Created by anarchist on 8/28/16.
@@ -15,6 +17,18 @@ public class Transform {
         this.position = position;
         this.rotation = rotation;
         this.scale = new Vector2f(scale,scale);
+    }
+
+    public Matrix4f getProjection(Matrix4f target) {
+        target = target.translate(position);
+        target = target.scale(new Vector3f(scale.x, scale.y, 1));
+        return target;
+    }
+
+    public static Matrix4f getProjection(Matrix4f target, Vector2f position, Vector2f scale) {
+        target = target.translate(position);
+        target = target.scale(new Vector3f(scale.x, scale.y, 1));
+        return target;
     }
 
     public Transform() {

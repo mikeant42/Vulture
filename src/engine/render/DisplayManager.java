@@ -67,6 +67,9 @@ public class DisplayManager {
         glh = new int[5];
         GLFW.glfwGetFramebufferSize(window, glw, glh);
 
+        System.out.println(glw[0]);
+        System.out.println(glh[0]);
+
 
         if (window == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create window");
@@ -81,6 +84,8 @@ public class DisplayManager {
                 (vidmode.height() - WINDOW_HEIGHT) / 2
         );
 
+/**
+ * This code was written to deal with 4k screens
 
 //        int[] widthMM = new int[5];
 //        int[] heightMM = new int[5];
@@ -88,7 +93,7 @@ public class DisplayManager {
 //
 //        double dpi = vidmode.width() / (widthMM[0] / 25.4);
 //        System.out.println(widthMM[0]);
-
+**/
         // Make the OpenGL context current
         GLFW.glfwMakeContextCurrent(window);
 
@@ -109,19 +114,20 @@ public class DisplayManager {
         GL.createCapabilities();
 
 
-        GL11.glViewport(0, 0, glw[0], glh[0]);
+        //GL11.glViewport(0, 0, glw[0], glh[0]);
+        GL11.glOrtho(0, getWindowWidth(), 0, getWindowHeight(), -1, 1);
 
     }
 
-    public static Vector2f getCoords() {
-        DoubleBuffer xBuffer = BufferUtils.createDoubleBuffer(1);
-        DoubleBuffer yBuffer = BufferUtils.createDoubleBuffer(1);
-        GLFW.glfwGetCursorPos(window, xBuffer, yBuffer);
-        double x = xBuffer.get(0);
-        double y = yBuffer.get(0);
-
-        return new Vector2f((float)x, (float)y);
-    }
+//    public static Vector2f getCoords() {
+//        DoubleBuffer xBuffer = BufferUtils.createDoubleBuffer(1);
+//        DoubleBuffer yBuffer = BufferUtils.createDoubleBuffer(1);
+//        GLFW.glfwGetCursorPos(window, xBuffer, yBuffer);
+//        double x = xBuffer.get(0);
+//        double y = yBuffer.get(0);
+//
+//        return new Vector2f((float)x, (float)y);
+//    }
 
     public static double getTime() {
         return GLFW.glfwGetTime();

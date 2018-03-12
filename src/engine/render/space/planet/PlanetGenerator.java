@@ -49,7 +49,7 @@ public class PlanetGenerator {
             //this.colorMap = "colormap/MATLAB_autumn.frag";
 
             planet.generate(colorMap, function);
-            planet.getTransform().setScale(1.75f);
+            //planet.getTransform().setScale(1.75f);
             planet.setName(PlanetNameGenerator.generate(seed));
         }
 
@@ -61,16 +61,16 @@ public class PlanetGenerator {
     }
 
 
-    public static Seed generatePlanetSeed(Seed galaxySeed, Vector2f planetPosition) {
-        Seed seed = new Seed();
-
-        int a = MathUtil.psrandomInt(galaxySeed);
-        int b = (int)(MathUtil.psrandomFloat(planetPosition.x, planetPosition.y, galaxySeed));
-        int c = (int)(a * b / (planetPosition.x / 2));
-        seed.seed = c;
-
-        return seed;
-    }
+//    public static Seed generatePlanetSeed(Seed galaxySeed, Vector2f planetPosition) {
+//        Seed seed = new Seed();
+//
+//        int a = MathUtil.psrandomInt(galaxySeed);
+//        int b = (int)(MathUtil.psrandomFloat(planetPosition.x, planetPosition.y, galaxySeed));
+//        int c = (int)(a * b / (planetPosition.x / 2));
+//        seed.seed = c;
+//
+//        return seed;
+//    }
 
 
 }

@@ -53,7 +53,9 @@ public class SpaceScene extends PlayerScene {
             Vector2f pos = new Vector2f(x,y);
 
             System.out.println("X: " + x + " Y: " + y);
-            PlanetGenerator generator = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT, PlanetGenerator.generatePlanetSeed(seed, pos));
+//            PlanetGenerator generator = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT, PlanetGenerator.generatePlanetSeed(seed, pos));
+            PlanetGenerator generator = new PlanetGenerator(PlanetGenerator.PLANET_TYPE_HABIT, this.seed);
+
             Planet planet = generator.getPlanet();
             planet.getTransform().setPosition(pos);
             planets.add(planet);
@@ -66,11 +68,13 @@ public class SpaceScene extends PlayerScene {
         for (Planet planet : planets) {
             if (planet.isHovering(pos)) {
                 returnPlanet = planet;
+                return returnPlanet;
             }
 
         }
 
-        return returnPlanet;
+        return null;
+
     }
 
         private void addPlanets() {

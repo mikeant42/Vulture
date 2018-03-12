@@ -56,7 +56,7 @@ public class Main {
         player.getTransform().setPosition(new Vector2f(0,1.5f));
 
         SpaceScene spaceScene = new SpaceScene(seed);
-        //spaceScene.create();
+        spaceScene.create();
 
 
 
@@ -94,7 +94,7 @@ public class Main {
         bunny.setRunForward(new Vector2i(13, 16));
 
         bunny.getTransform().setScale(0.1f);
-        bunny.getTransform().setPosition(new Vector2f(2,2));
+        bunny.getTransform().setPosition(new Vector2f(0,0));
 //        bunny.setRunForward(new Vector2i(1,3));
 //        bunny.setRunLeft(new Vector2i(4,6));
 //        bunny.setRunRight(new Vector2i(7,9));
@@ -127,6 +127,7 @@ public class Main {
                 Planet mp = spaceScene.getPlanetHovering(player.getTransform().getPosition());
                 if (mp != null) {
                     planetName = mp.getName();
+                    System.out.println(planetName);
                     if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_L)) {
                         CoreEngine.setScene(terrainScene);
                         terrainScene.setPhysicsEngine(physicsEngine);

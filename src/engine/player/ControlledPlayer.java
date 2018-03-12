@@ -1,6 +1,7 @@
 package engine.player;
 
 import engine.base.CoreEngine;
+import engine.base.Node;
 import engine.ground.Projectile;
 import engine.input.CursorHandler;
 import engine.input.KeyboardHandler;
@@ -24,6 +25,11 @@ public class ControlledPlayer extends Player {
     }
 
     @Override
+    public void handleCollision(Node node) {
+        System.out.println("Ouch!");
+    }
+
+    @Override
     public void input() {
         if (KeyboardHandler.isKeyDown(GLFW.GLFW_KEY_D)) {
             setState(Player.STATE_RUNNING_RIGHT);
@@ -40,7 +46,8 @@ public class ControlledPlayer extends Player {
         if (MouseHandler.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_1)) {
             Vector2f normCoords = new Vector2f(CursorHandler.getMouseX(), CursorHandler.getMouseY());
             //Vector2f normCoords = CursorHandler.getNormalisedDeviceCoordinates();
-            Vector3f spaceCoords = CoreEngine.getCamera().unproject(new Vector3f(normCoords.x, normCoords.y, 0));
+
+            Vector3f spaceCoords = CoreEngine.getCamera().unproject(new Vector3f(normCoords.x, normCoords.y, 1));
 
             System.out.println(spaceCoords.toString());
 

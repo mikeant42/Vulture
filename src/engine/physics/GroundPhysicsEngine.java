@@ -26,8 +26,10 @@ public class GroundPhysicsEngine implements PhysicsEngine {
             if (node.isSolid()) {
                 node.updateBoundingBox();
                 // Needs to make sure that the player doesn't collide with itself
+                // This here is only checking if the main player collides with anything else.
                 if (player.getBoundingBox().intersects(node.getBoundingBox()) && !player.getClass().equals(node.getClass())) {
                     player.handleCollision(node);
+                    node.handleCollision(player);
                 }
             }
         }

@@ -2,6 +2,7 @@ package engine.render;
 
 import engine.base.CoreEngine;
 import engine.base.Node;
+import engine.base.Transform;
 import engine.input.CursorHandler;
 import engine.input.KeyboardHandler;
 import engine.math.*;
@@ -21,6 +22,7 @@ public class Camera {
 
     public Camera() {
         position = new Vector2f(0, 0);
+
     }
 
     public Vector2f getPosition() {
@@ -71,9 +73,12 @@ public class Camera {
         screenCoords.x = (2 * x) / viewportWidth - 1;
         screenCoords.y = (2 * y) / viewportHeight - 1;
         screenCoords.z = 2 * screenCoords.z - 1;
-        Matrix4f invertedView = Matrix4f.invert(MathUtil.createViewMatrix(this), null);
-        screenCoords = screenCoords.prj(invertedView);
+        Matrix4f proj = Transform.getProjection(MathUtil.createViewMatrix(this), position, new Vector2f(1,1));
+
+        Matrix4f invertedProj = Matrix4f.invert(proj, null);
+        screenCoords = screenCoords.prj(invertedProj);
         return screenCoords;
+
     }
 
     /** Function to translate a point given in screen coordinates to world space. It's the same as GLU gluUnProject but does not
