@@ -56,7 +56,7 @@ public class Main {
         player.getTransform().setPosition(new Vector2f(0,1.5f));
 
         SpaceScene spaceScene = new SpaceScene(seed);
-        spaceScene.create();
+        //spaceScene.create();
 
 
 
@@ -68,7 +68,7 @@ public class Main {
         TextManager.loadText(text);
 
         //sprite.addChild(charSprite);
-        spaceScene.addEntity(player);
+        spaceScene.setControlledPlayer(player);
         CoreEngine.getCamera().setPlayer(player);
 
         //sprite.getTransform().setPosition(new Vector2f(-0.5f, 0.2f));
@@ -81,7 +81,7 @@ public class Main {
 
         TiledTerrain terrain = new TiledTerrain();
         terrain.addToScene(terrainScene);
-        terrainScene.addEntity(player);
+        terrainScene.setControlledPlayer(player);
 
         Texture bunnyTex = Texture.loadTexture("orangehair.png");
         bunnyTex.setNumberOfRows(4);
@@ -103,10 +103,6 @@ public class Main {
 
 
         terrainScene.addEntity(bunny);
-
-        Light light = new Light(new Vector4f(0.7f, 0.2f, 0.2f, 0.8f));
-        terrainScene.addEntity(light);
-
 
         GroundPhysicsEngine physicsEngine = new GroundPhysicsEngine(player, terrain);
 

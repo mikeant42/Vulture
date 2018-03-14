@@ -1,11 +1,15 @@
 package engine.base;
 
+import engine.math.Vector2f;
+import engine.network.PlayerData;
 import engine.physics.PhysicsEngine;
 import engine.player.Player;
 import engine.render.Camera;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PlayerScene {
     /*
@@ -15,17 +19,27 @@ public class PlayerScene {
     Two main classes
     - SpaceScene
     - PlanetScene
+
+    Also needs to be optimized
      */
 
     private Node rootNode;
-    private List<Node> nodes = new ArrayList<>();
+    private List<Node> nodes;
     private Seed seed;
     private boolean active = false;
     private PhysicsEngine physicsEngine;
+    private Player player;
+
+    private Map<Integer, Player> realPlayers = new HashMap<>();
 
     public PlayerScene(Seed seed) {
         rootNode = new Node("Scene"+seed.seed);
         nodes = rootNode.getAllChildren();
+    }
+
+    public void setControlledPlayer(Player player) {
+        this.player = player;
+        addEntity(player);
     }
 
     public PhysicsEngine getPhysicsEngine() {
@@ -63,6 +77,18 @@ public class PlayerScene {
         }
 
         physicsEngine.integrate(physicsNodes);
+
+        if (isActive()) {
+            CoreEngine.getNetworkHandler().setActiveScene(this);
+            PlayerData data = new PlayerData();
+            Vector2f pos = player.getTransform().getPosition();
+            data.posX = pos.x;
+            data.posY = pos.y;
+            data.clientID = CoreEngine.getNetworkHandler().getClientID();
+
+            data.sceneID = 52;
+            CoreEngine.getNetworkHandler().sendPlayerInfo(data);
+        }
     }
 
     public Seed getSeed() {
@@ -75,5 +101,9 @@ public class PlayerScene {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public void addNewPlayer(int id) {
+        
     }
 }

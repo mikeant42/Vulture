@@ -1,8 +1,15 @@
 package engine.base;
 
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+import engine.network.SomeRequest;
+import engine.network.SomeResponse;
 import engine.render.Camera;
 import engine.render.Loader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +24,14 @@ public class CoreEngine {
 
     private static PlayerScene scene;
 
+    private static ClientNetworkHandler networkHandler;
+
     public static void init() {
         camera = new Camera();
 
         loader = new Loader();
+
+        networkHandler = new ClientNetworkHandler();
     }
 
     public static Camera getCamera() {
@@ -51,5 +62,9 @@ public class CoreEngine {
 
     public static void update() {
         scene.update(camera);
+    }
+
+    public static ClientNetworkHandler getNetworkHandler() {
+        return networkHandler;
     }
 }
